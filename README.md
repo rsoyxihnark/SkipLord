@@ -2,13 +2,15 @@
 
 Bannerlord module. Skips the startup splash and the campaign cinematic. Nothing else.
 
-Folder: `OneSkip`. Assembly: `OneSkip.dll`. No other names.
+Folder: `Modules/OneSkip`. Assembly: `OneSkip.dll`. No other names.
+
+The release zip opens at `Modules/`, which is the layout Vortex expects.
 
 ## Download
 
-**Latest:** [OneSkip-v1.3.0.zip](https://github.com/rsoyxihnark/SkipLord/releases/latest)
+**Latest:** [OneSkip-v1.3.1.zip](https://github.com/rsoyxihnark/SkipLord/releases/latest)
 
-Delete any old `Modules/OneSkip` folder first. Unzip so `Modules/OneSkip/SubModule.xml` exists. Enable **Harmony above One Skip**.
+Vortex: drop the zip. Manual: extract into the game folder (the folder that already contains `Modules`). Delete any old `Modules/OneSkip` folder first. Enable **Harmony above One Skip**.
 
 When it works, the game log shows: `One Skip loaded — splash and campaign cinematic`.
 
