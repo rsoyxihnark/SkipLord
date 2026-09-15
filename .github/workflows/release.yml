@@ -33,8 +33,7 @@ jobs:
             dist-release/*.zip
             dist-release/*.sha256
           body: |
-            Bannerlord module pack. Unzip so `Modules/OneSkip/SubModule.xml` exists.
+            Bannerlord module. Unzip so `Modules/OneSkip/SubModule.xml` exists.
 
-            Requires Harmony and MCM. Disable the original four skip mods.
+            Requires Harmony. Skips splash and campaign cinematic only.
 
-            Drop-in download is attached to this release.

@@ -1,37 +1,35 @@
-# One Skip — To Rule Them All
+# One Skip
 
-Unofficial [Mount & Blade II: Bannerlord](https://www.taleworlds.com) module pack. Four community skip mods, one folder.
+Bannerlord module. Skips the startup splash and the campaign cinematic. Nothing else.
 
 ## Download
 
-**Latest release:** [OneSkip-v1.0.0.zip](https://github.com/rsoyxihnark/SkipLord/releases/latest)
+**Latest:** [OneSkip-v1.1.0.zip](https://github.com/rsoyxihnark/SkipLord/releases/latest)
 
-Drop the `OneSkip` folder into `Modules`. Requires [Harmony](https://www.nexusmods.com/mountandblade2bannerlord/mods/2006) and [MCM](https://www.nexusmods.com/mountandblade2bannerlord/mods/159). Disable the original four skip mods.
+Delete any old `Modules/OneSkip` folder first. Unzip so `Modules/OneSkip/SubModule.xml` exists. Enable Harmony, then One Skip.
 
-## What is loaded
+v1.0.0 is withdrawn. It required MCM and shipped other assemblies, so it often loaded nothing.
 
-| Assembly | Job |
+## What it does
+
+| | |
 | --- | --- |
-| `WPS_SkipIntro.dll` | Splash skip for Native 1.4.8 |
-| `UsefulSkips.dll` | Campaign cinematic, character creation, tutorial (MCM) |
+| Startup splash | Menu is next |
+| Campaign cinematic | New sandbox / story games skip `campaign_intro` |
 
-Skip Splash Videos and Skip Intro and Character Creation are lineage only — they Harmony-patch the same startup method as WPS and are not loaded.
+Does not skip character creation or the story tutorial. No MCM.
 
-## Build the zip
+## Build
 
 ```sh
+# compile OneSkip.dll (needs .NET SDK)
+dotnet build module-src/OneSkip.csproj -c Release
+cp module-src/bin/OneSkip.dll module/OneSkip/bin/Win64_Shipping_Client/
+
+# pack
 sh scripts/build-release.sh
 ```
 
-Writes `public/downloads/OneSkip-v1.0.0.zip` and `dist-release/`. Pushing a `v*` tag runs `.github/workflows/release.yml` and publishes a GitHub Release with the zip attached.
-
-## Credits
-
-Original authors retain their work:
-
-- [WPS Skip Intro](https://www.nexusmods.com/mountandblade2bannerlord/mods/10230) — Wasted Potential Studios
-- [Useful Skips](https://www.nexusmods.com/mountandblade2bannerlord/mods/4896) — OrderWOPower
-- [Skip Intro and Character Creation](https://www.nexusmods.com/mountandblade2bannerlord/mods/3696) — gallickgunner
-- [Skip Splash Videos](https://www.nexusmods.com/mountandblade2bannerlord/mods/4201) — scorpiona / jzebedee
+Pushing a `v*` tag publishes a GitHub Release with the zip.
 
 Not affiliated with TaleWorlds.

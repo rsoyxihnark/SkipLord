@@ -8,11 +8,11 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "One Skip — To Rule Them All" },
+      { title: "One Skip" },
       {
         name: "description",
         content:
-          "Four Bannerlord skip-intro mods forged into one module. Splash, campaign cinematic, character creation, and tutorial — one folder.",
+          "Bannerlord module. Skips the startup splash and the campaign cinematic. Harmony only.",
       },
       { name: "theme-color", content: "#0c0b0a" },
     ],

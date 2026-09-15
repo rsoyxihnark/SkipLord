@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>10</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>OneSkip</AssemblyName>
+    <RootNamespace>OneSkip</RootNamespace>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>bin\</OutputPath>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <Version>1.1.0</Version>
+    <AssemblyTitle>OneSkip</AssemblyTitle>
+    <Product>One Skip</Product>
+    <Company>SkipLord</Company>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Lib.Harmony" Version="2.3.3" PrivateAssets="all" ExcludeAssets="runtime" />
+    <PackageReference Include="Bannerlord.ReferenceAssemblies.Core" Version="1.4.8.119303" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net472" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+</Project>

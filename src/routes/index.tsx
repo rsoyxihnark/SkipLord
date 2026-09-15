@@ -18,7 +18,6 @@ import {
   MODULE,
   RELEASES,
   REQUIREMENTS,
-  SOURCES,
   SUBMODULE_XML,
 } from "@/lib/merge";
 import { formatBytes } from "@/lib/utils";
@@ -41,7 +40,6 @@ function Home() {
       <main>
         <Hero />
         <Releases />
-        <Lineage />
         <Features />
         <Forge />
         <Install />
@@ -65,11 +63,8 @@ function Header() {
           <a href="#releases" className="hover:text-fg">
             Releases
           </a>
-          <a href="#lineage" className="hover:text-fg">
-            Lineage
-          </a>
           <a href="#features" className="hover:text-fg">
-            Features
+            Skips
           </a>
           <a href="#install" className="hover:text-fg">
             Install
@@ -101,18 +96,17 @@ function Hero() {
             className="rise font-display text-3xl leading-tight font-semibold tracking-(--tracking-display) text-balance"
             style={{ animationDelay: "80ms" }}
           >
-            One skip to
+            Splash and the
             <br />
-            rule them all
+            campaign cinematic.
           </h1>
           <p
             className="rise mt-5 max-w-xl text-base leading-(--leading-normal) text-muted"
             style={{ animationDelay: "140ms" }}
           >
-            Four community skip mods, one folder. Splash, campaign cinematic,
-            character creation, and the story tutorial — the two assemblies
-            that still belong on a 1.4.8 install, and none of the ones that
-            would fight them.
+            One assembly. Two skips. You hit the menu, and a new campaign
+            does not play the intro reel. Character creation and the
+            tutorial stay. Harmony is the only extra.
           </p>
           <div
             className="rise mt-8 flex w-full min-w-0 flex-col gap-3 sm:flex-row sm:items-center"
@@ -121,11 +115,11 @@ function Hero() {
             <Button asChild size="lg" className="w-full sm:w-auto">
               <a href={MODULE.zip} download={MODULE.zipName}>
                 <Download />
-                Download v1.0.0 zip
+                Download v1.1.0 zip
               </a>
             </Button>
             <p className="font-mono text-xs text-subtle">
-              {formatBytes(MODULE.zipBytes)} · GitHub release
+              {formatBytes(MODULE.zipBytes)} · replace the old folder
             </p>
           </div>
           <HashRow />
@@ -214,7 +208,7 @@ function Releases() {
         </p>
         <div className="mt-3 flex flex-wrap items-end justify-between gap-4">
           <h2 className="font-display text-xl font-semibold tracking-(--tracking-display) sm:text-2xl">
-            Built zip, tagged and attached
+            Use this zip. Not v1.0.0.
           </h2>
           <a
             href={GITHUB.releases}
@@ -222,7 +216,7 @@ function Releases() {
             rel="noreferrer"
             className="inline-flex items-center gap-1 text-sm text-steel hover:text-fg"
           >
-            All GitHub releases
+            GitHub releases
             <ArrowUpRight className="size-3.5" />
           </a>
         </div>
@@ -275,103 +269,30 @@ function Releases() {
   );
 }
 
-function Lineage() {
-  return (
-    <section id="lineage" className="scroll-mt-16 border-t border-line">
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-        <p className="font-display text-[11px] font-semibold tracking-(--tracking-kicker) text-steel uppercase">
-          Four worlds
-        </p>
-        <h2 className="mt-3 font-display text-xl leading-snug font-semibold tracking-(--tracking-display) sm:text-2xl">
-          What each mod brought — and which two still load
-        </h2>
-        <p className="mt-4 max-w-2xl text-sm leading-(--leading-normal) text-muted">
-          Loading all four Harmony patches on the same startup method is how
-          you crash a launcher. One Skip keeps the current splash skip and
-          the only feature-complete campaign skip, and leaves the 2022
-          doubles in the lineage.
-        </p>
-        <ol className="mt-10 grid gap-3 md:grid-cols-2">
-          {SOURCES.map((src) => (
-            <li
-              key={src.id}
-              className="flex flex-col rounded-[calc(var(--radius-sm)+12px)] border border-line bg-bg-elevated p-5"
-            >
-              <div className="flex items-start justify-between gap-3">
-                <p className="font-mono text-[11px] text-subtle">
-                  {src.year} · {src.version}
-                </p>
-                <span
-                  className={
-                    src.role === "loaded"
-                      ? "rounded-full bg-fg px-2.5 py-0.5 text-[10px] font-medium tracking-wide text-bg uppercase"
-                      : "rounded-full border border-line px-2.5 py-0.5 text-[10px] font-medium tracking-wide text-muted uppercase"
-                  }
-                >
-                  {src.verdict}
-                </span>
-              </div>
-              <h3 className="mt-3 font-display text-lg leading-snug text-fg">
-                {src.name}
-              </h3>
-              <p className="mt-1 text-sm text-muted">{src.author}</p>
-              <p className="mt-4 text-sm leading-(--leading-normal) text-fg/90">
-                {src.take}
-              </p>
-              <p className="mt-3 text-sm leading-(--leading-normal) text-subtle">
-                {src.leave}
-              </p>
-              <a
-                className="mt-4 self-start text-xs text-steel hover:text-fg"
-                href={`https://www.nexusmods.com/mountandblade2bannerlord/mods/${src.nexus}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Nexus #{src.nexus}
-              </a>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
-  );
-}
-
 function Features() {
   return (
     <section id="features" className="scroll-mt-16 border-t border-line bg-bg-elevated">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
         <p className="font-display text-[11px] font-semibold tracking-(--tracking-kicker) text-steel uppercase">
-          The one module
+          What it skips
         </p>
         <h2 className="mt-3 font-display text-xl font-semibold tracking-(--tracking-display) sm:text-2xl">
-          Four skips. Two on by default.
+          Two videos. That is the whole mod.
         </h2>
         <p className="mt-4 max-w-2xl text-sm leading-(--leading-normal) text-muted">
-          Splash and the campaign cinematic fire without asking. Character
-          creation and the tutorial stay off until you enable them in MCM —
-          skipping the tutorial also skips Gunnar’s questline.
+          Both fire with no menu and no extra dependency. Character
+          creation, the story tutorial, and Gunnar stay where TaleWorlds
+          put them.
         </p>
         <ul className="mt-10 grid gap-px overflow-hidden rounded-[var(--radius-lg)] border border-line bg-line sm:grid-cols-2">
           {FEATURES.map((f) => (
             <li key={f.id} className="bg-bg-elevated p-6">
               <div className="flex items-center justify-between gap-3">
                 <h3 className="font-display text-lg text-fg">{f.title}</h3>
-                <span
-                  className={
-                    f.defaultOn
-                      ? "font-mono text-[11px] text-ok"
-                      : "font-mono text-[11px] text-subtle"
-                  }
-                >
-                  {f.defaultOn ? "on" : "mcm"}
-                </span>
+                <span className="font-mono text-[11px] text-ok">on</span>
               </div>
               <p className="mt-3 text-sm leading-(--leading-normal) text-muted">
                 {f.blurb}
-              </p>
-              <p className="mt-4 font-mono text-[11px] text-subtle">
-                {f.source} · {f.via}
               </p>
             </li>
           ))}
@@ -387,33 +308,29 @@ function Forge() {
       <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-2">
         <div className="min-w-0">
           <p className="font-display text-[11px] font-semibold tracking-(--tracking-kicker) text-steel uppercase">
-            How it was forged
+            How it runs
           </p>
           <h2 className="mt-3 font-display text-xl font-semibold tracking-(--tracking-display) sm:text-2xl">
-            One SubModule.xml, two assemblies
+            One DLL. One class.
           </h2>
           <p className="mt-4 text-sm leading-(--leading-normal) text-muted">
-            Bannerlord loads every DLL listed in a module. WPS prefixes
-            startup and marks the splash played. Useful Skips never hooks
-            that method — it uses a submodule callback for splash, then
-            Harmony on campaign intro, character creation, and the tutorial.
-            They stack. The 2022 mods both transpile the same startup
-            method as WPS, so they stay on the bench.
+            Before the first screen, the splash flag is set so the menu
+            is next. When a campaign pushes a video whose path contains
+            campaign_intro, playback is finished. Native files stay
+            untouched.
           </p>
           <ul className="mt-6 space-y-3 text-sm text-muted">
             <li className="flex gap-2">
               <Check className="mt-0.5 size-4 shrink-0 text-steel" />
-              Safe on an existing save. No campaign data is rewritten.
+              Safe on an existing save.
             </li>
             <li className="flex gap-2">
               <Check className="mt-0.5 size-4 shrink-0 text-steel" />
-              Native video files are untouched — verifying game files will
-              not undo the skip.
+              No MCM. Harmony only.
             </li>
             <li className="flex gap-2">
               <Minus className="mt-0.5 size-4 shrink-0 text-subtle" />
-              Do not enable the original four beside this. Harmony will
-              patch the same methods twice.
+              Delete the old OneSkip folder before dropping this one in.
             </li>
           </ul>
         </div>
@@ -433,7 +350,7 @@ function Install() {
           Install
         </p>
         <h2 className="mt-3 font-display text-xl font-semibold tracking-(--tracking-display) sm:text-2xl">
-          Drop one folder. Turn three mods on.
+          Drop one folder. Turn two mods on.
         </h2>
         <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
           <ol className="space-y-0">
@@ -478,12 +395,11 @@ function Credits() {
     <footer className="border-t border-line">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <p className="font-display text-sm text-fg">
-          Original authors keep their work. This pack is an unofficial
-          convenience merge — not TaleWorlds, not Nexus, not the four
-          authors. Endorse the originals if it saved you a launcher slot.
+          Not affiliated with TaleWorlds. Does not rewrite saves. Delete
+          the module folder to uninstall.
         </p>
         <p className="mt-4 font-mono text-[11px] text-subtle">
-          OneSkip {MODULE.version} · {MODULE.id} ·{" "}
+          OneSkip {MODULE.version} ·{" "}
           <a href={GITHUB.url} className="text-steel hover:text-fg" target="_blank" rel="noreferrer">
             {GITHUB.owner}/{GITHUB.repo}
           </a>

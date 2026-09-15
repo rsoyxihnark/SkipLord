@@ -3,8 +3,8 @@ import { n as require_react } from "../_libs/@radix-ui/react-compose-refs+[...].
 import { _ as useRouter, f as createRouter, g as createRootRoute, h as createFileRoute, l as Scripts, m as lazyRouteComponent, p as Outlet, u as HeadContent, v as require_jsx_runtime } from "../_libs/@tanstack/react-router+[...].mjs";
 import { t as TriangleAlert } from "../_libs/lucide-react.mjs";
 import { a as union, i as string, n as number, r as object, t as literal } from "../_libs/zod.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-Cho4JVhT.js
-var router_Cho4JVhT_exports = /* @__PURE__ */ __exportAll({ getRouter: () => getRouter });
+//#region node_modules/.nitro/vite/services/ssr/assets/router-Dn_OYK_r.js
+var router_Dn_OYK_r_exports = /* @__PURE__ */ __exportAll({ getRouter: () => getRouter });
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var FALLBACK_MESSAGE = "An unexpected error occurred. Try reloading the page.";
@@ -298,7 +298,7 @@ function PreviewHostBridge() {
 	}, [router]);
 	return null;
 }
-var styles_default = "/assets/styles-DJLd3Dso.css";
+var styles_default = "/assets/styles-DUAhvaU1.css";
 var Route$1 = createRootRoute({
 	head: () => ({
 		meta: [
@@ -307,10 +307,10 @@ var Route$1 = createRootRoute({
 				name: "viewport",
 				content: "width=device-width, initial-scale=1"
 			},
-			{ title: "One Skip — To Rule Them All" },
+			{ title: "One Skip" },
 			{
 				name: "description",
-				content: "Four Bannerlord skip-intro mods forged into one module. Splash, campaign cinematic, character creation, and tutorial — one folder."
+				content: "Bannerlord module. Skips the startup splash and the campaign cinematic. Harmony only."
 			},
 			{
 				name: "theme-color",
@@ -360,7 +360,7 @@ var Route$1 = createRootRoute({
 		] })]
 	})
 });
-var $$splitComponentImporter = () => import("./routes-DBmc0_M8.mjs");
+var $$splitComponentImporter = () => import("./routes-DRXvoKZ5.mjs");
 var rootRouteChildren = { IndexRoute: createFileRoute("/")({ component: lazyRouteComponent($$splitComponentImporter, "component") }).update({
 	id: "/",
 	path: "/",
@@ -374,4 +374,4 @@ function getRouter() {
 	});
 }
 //#endregion
-export { getRouter, router_Cho4JVhT_exports as t };
+export { getRouter, router_Dn_OYK_r_exports as t };

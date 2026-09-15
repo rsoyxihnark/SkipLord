@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/SubModule.xsd">
-  <Name value="One Skip — To Rule Them All" />
+  <Name value="One Skip" />
   <Id value="OneSkip" />
-  <Version value="v1.0.0" />
+  <Version value="v1.1.0" />
   <Official value="false" />
   <DefaultModule value="false" />
   <SingleplayerModule value="true" />
@@ -12,36 +12,17 @@
   <ModuleType value="Community" />
   <DependedModules>
     <DependedModule Id="Native" Optional="false" />
-    <DependedModule Id="SandBoxCore" Optional="false" />
-    <DependedModule Id="Sandbox" Optional="false" />
-    <DependedModule Id="StoryMode" Optional="false" />
-    <DependedModule Id="CustomBattle" Optional="true" />
     <DependedModule Id="Bannerlord.Harmony" Optional="false" />
-    <DependedModule Id="Bannerlord.MBOptionScreen" Optional="false" />
   </DependedModules>
   <DependedModuleMetadatas>
     <DependedModuleMetadata id="Native" order="LoadBeforeThis" />
-    <DependedModuleMetadata id="SandBoxCore" order="LoadBeforeThis" />
-    <DependedModuleMetadata id="Sandbox" order="LoadBeforeThis" />
-    <DependedModuleMetadata id="StoryMode" order="LoadBeforeThis" />
-    <DependedModuleMetadata id="CustomBattle" order="LoadBeforeThis" optional="true" />
     <DependedModuleMetadata id="Bannerlord.Harmony" order="LoadBeforeThis" />
-    <DependedModuleMetadata id="Bannerlord.MBOptionScreen" order="LoadBeforeThis" />
   </DependedModuleMetadatas>
   <SubModules>
     <SubModule>
-      <Name value="WPS Skip Intro" />
-      <DLLName value="WPS_SkipIntro.dll" />
-      <SubModuleClassType value="WPS.SkipIntro.SubModule" />
-      <Tags>
-        <Tag key="DedicatedServerType" value="none" />
-        <Tag key="IsNoRenderModeElement" value="false" />
-      </Tags>
-    </SubModule>
-    <SubModule>
-      <Name value="Useful Skips" />
-      <DLLName value="UsefulSkips.dll" />
-      <SubModuleClassType value="UsefulSkips.UsefulSkipsSubModule" />
+      <Name value="One Skip" />
+      <DLLName value="OneSkip.dll" />
+      <SubModuleClassType value="OneSkip.SubModule" />
       <Tags>
         <Tag key="DedicatedServerType" value="none" />
         <Tag key="IsNoRenderModeElement" value="false" />
