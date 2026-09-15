@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "One Skip — To Rule Them All",
+      "hasCanvas": false,
+      "bodyTextLen": 5266,
+      "bodyTextHash": "410a706b66f263be8ede71b4915bcac7ad3516a7369dedd6004ca86789019011",
+      "bodyTextPrefix": "One Skip Lineage Features Install Download BANNERLORD MODULE · V",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "One Skip — To Rule Them All",
+      "hasCanvas": false,
+      "bodyTextLen": 5241,
+      "bodyTextHash": "d654fec05f629df31dc091c50d7a51b6450d1b62d109542a90ceb2af79d4493d",
+      "bodyTextPrefix": "One Skip Download BANNERLORD MODULE · V1.0.0 One skip to rule th",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}
