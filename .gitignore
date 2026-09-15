@@ -4,3 +4,5 @@ node_modules/
 .env
 .env.*
 dist-release/
+module-src/bin/
+module-src/obj/

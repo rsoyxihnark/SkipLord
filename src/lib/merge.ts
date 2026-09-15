@@ -7,165 +7,84 @@ export const GITHUB = {
 
 export const MODULE = {
   id: "OneSkip",
-  name: "One Skip — To Rule Them All",
+  name: "One Skip",
   short: "One Skip",
-  version: "v1.0.0",
+  version: "v1.1.0",
   game: "Mount & Blade II: Bannerlord",
-  zip: "/downloads/OneSkip-v1.0.0.zip",
-  zipName: "OneSkip-v1.0.0.zip",
-  zipBytes: 15259,
-  sha256: "344f2d81873b10c09e7ae504c76171f1f091978c36ce9fc08e3b4bfbd331b158",
+  zip: "/downloads/OneSkip-v1.1.0.zip",
+  zipName: "OneSkip-v1.1.0.zip",
+  zipBytes: 4325,
+  sha256: "dc52428891aba8fe8cb1e648527ab11f61b25e2642fc76d48410a044d6885d85",
   githubAsset:
-    "https://github.com/rsoyxihnark/SkipLord/releases/download/v1.0.0/OneSkip-v1.0.0.zip",
-  githubRelease: "https://github.com/rsoyxihnark/SkipLord/releases/tag/v1.0.0",
+    "https://github.com/rsoyxihnark/SkipLord/releases/download/v1.1.0/OneSkip-v1.1.0.zip",
+  githubRelease: "https://github.com/rsoyxihnark/SkipLord/releases/tag/v1.1.0",
 } as const;
 
 export const RELEASES = [
   {
-    tag: "v1.0.0",
-    title: "One Skip v1.0.0",
+    tag: "v1.1.0",
+    title: "One Skip v1.1.0",
     date: "15 Sep 2026",
     latest: true,
-    zip: "/downloads/OneSkip-v1.0.0.zip",
-    zipName: "OneSkip-v1.0.0.zip",
-    github: "https://github.com/rsoyxihnark/SkipLord/releases/tag/v1.0.0",
+    zip: "/downloads/OneSkip-v1.1.0.zip",
+    zipName: "OneSkip-v1.1.0.zip",
+    github: "https://github.com/rsoyxihnark/SkipLord/releases/tag/v1.1.0",
     githubAsset:
-      "https://github.com/rsoyxihnark/SkipLord/releases/download/v1.0.0/OneSkip-v1.0.0.zip",
+      "https://github.com/rsoyxihnark/SkipLord/releases/download/v1.1.0/OneSkip-v1.1.0.zip",
     notes:
-      "First cut. WPS splash skip plus Useful Skips (campaign intro, character creation, tutorial) in one Bannerlord module.",
-    bytes: 15259,
-    sha256: "344f2d81873b10c09e7ae504c76171f1f091978c36ce9fc08e3b4bfbd331b158",
+      "Own assembly. Splash and campaign cinematic only. No MCM. v1.0.0 never loaded if you did not already have MCM — that pack is dead.",
+    bytes: 4325,
+    sha256: "dc52428891aba8fe8cb1e648527ab11f61b25e2642fc76d48410a044d6885d85",
   },
 ] as const;
 
 export const FILES = [
-  { path: "SubModule.xml", bytes: 2263, role: "Module manifest — loads both assemblies" },
-  { path: "README.txt", bytes: 3702, role: "Install, credits, why two DLLs" },
-  { path: "bin/Win64_Shipping_Client/WPS_SkipIntro.dll", bytes: 5120, role: "1.4.8 splash skip" },
-  { path: "bin/Win64_Shipping_Client/UsefulSkips.dll", bytes: 12288, role: "Intro, character creation, tutorial" },
-  { path: "bin/Win64_Shipping_Client/UsefulSkips.pdb", bytes: 38400, role: "Symbols for crash reports" },
+  { path: "SubModule.xml", bytes: 1230, role: "Module manifest" },
+  { path: "README.txt", bytes: 814, role: "Install" },
+  { path: "bin/Win64_Shipping_Client/OneSkip.dll", bytes: 6656, role: "Splash + campaign cinematic" },
 ] as const;
 
 export const FEATURES = [
   {
     id: "splash",
     title: "Startup splash",
-    blurb: "Marks the intro video as already played before the first screen is set. You land on the menu.",
+    blurb: "Marks the splash as already played before the first screen is set. You land on the menu.",
     defaultOn: true,
-    source: "WPS Skip Intro",
-    via: "Harmony prefix on SetInitialModuleScreenAsRootScreen",
   },
   {
     id: "campaign",
     title: "Campaign cinematic",
-    blurb: "When a new sandbox or story campaign pushes the intro video, the playback state is finished immediately.",
+    blurb: "When a new sandbox or story campaign pushes campaign_intro, playback is finished immediately.",
     defaultOn: true,
-    source: "Useful Skips",
-    via: "Harmony on GameStateManager.CleanAndPushState",
-  },
-  {
-    id: "cc",
-    title: "Character creation",
-    blurb: "Random culture and name, matching family and kit, plus 6 attribute and 12 focus points. Off until you flip it in MCM.",
-    defaultOn: false,
-    source: "Useful Skips",
-    via: "Harmony on CharacterCreationManager.NextStage",
-  },
-  {
-    id: "tutorial",
-    title: "Story tutorial",
-    blurb: "Closes the training-field / brother prologue so a story-mode start dumps you on the map. Off by default — it also skips Gunnar’s questline.",
-    defaultOn: false,
-    source: "Useful Skips",
-    via: "Harmony on TutorialPhaseCampaignBehavior",
-  },
-] as const;
-
-export const SOURCES = [
-  {
-    id: "splash-videos",
-    year: "2022",
-    version: "v1.1.0",
-    name: "Skip Splash Videos",
-    author: "scorpiona / jzebedee",
-    nexus: 4201,
-    role: "lineage",
-    verdict: "Not loaded",
-    take: "Proved a Harmony reverse-patch can kill the splash without touching native video files.",
-    leave: "Patches the same startup method as WPS. Shipping both would double-hook 1.4.8.",
-  },
-  {
-    id: "skip-intro",
-    year: "2022",
-    version: "v1.1",
-    name: "Skip Intro and Character Creation",
-    author: "gallickgunner",
-    nexus: 3696,
-    role: "lineage",
-    verdict: "Not loaded",
-    take: "Config-file skips and a dedicated character-creation fast path. First of the four to treat intros as code, not deleted .ivd files.",
-    leave: "Harmony transpiler on the same method WPS prefixes. Character creation is handled more completely by Useful Skips.",
-  },
-  {
-    id: "useful",
-    year: "2025",
-    version: "v1.0.2",
-    name: "Useful Skips",
-    author: "OrderWOPower",
-    nexus: 4896,
-    role: "loaded",
-    verdict: "Loaded",
-    take: "Campaign intro, character creation, tutorial, and MCM toggles. Splash is set from a submodule callback, so it stacks with WPS.",
-    leave: "Nothing — this is the feature engine.",
-  },
-  {
-    id: "wps",
-    year: "2026",
-    version: "v1.0.2",
-    name: "[WPS] Skip Intro",
-    author: "Wasted Potential Studios",
-    nexus: 10230,
-    role: "loaded",
-    verdict: "Loaded",
-    take: "Five-kilobyte splash skip written against Native 1.4.8. The one that belongs on a current install.",
-    leave: "Splash only — Useful Skips covers the rest.",
   },
 ] as const;
 
 export const REQUIREMENTS = [
-  { id: "Harmony", note: "BUTR Harmony, enabled before this module" },
-  { id: "MCM", note: "Mod Configuration Menu (Bannerlord.MBOptionScreen)" },
-  { id: "Native", note: "Game module — launcher will pull Sandbox / StoryMode with it" },
+  { id: "Harmony", note: "Bannerlord.Harmony, enabled above this module" },
+  { id: "Native", note: "The game itself. Nothing else." },
 ] as const;
 
 export const INSTALL = [
-  "Install Harmony and MCM if they are not already in your list.",
-  "Unzip OneSkip-v1.0.0.zip so Modules/OneSkip/SubModule.xml exists.",
-  "Launcher → Singleplayer → Mods. Enable Harmony, MCM, and One Skip.",
-  "Disable the original four: Skip Intro, Skip Splash Videos, Useful Skips, [WPS] Skip Intro.",
-  "Start the game. MCM → Useful Skips to skip character creation or the tutorial on a new campaign.",
+  "Install Harmony if it is not already in your list.",
+  "Delete any old OneSkip folder first, then unzip so Modules/OneSkip/SubModule.xml exists.",
+  "Launcher → Singleplayer → Mods. Enable Harmony, then One Skip.",
+  "Turn off any other intro-skip module so they do not double-patch.",
+  "Start the game. Splash is gone. A new campaign does not play the cinematic.",
 ] as const;
 
 export const SUBMODULE_XML = `<?xml version="1.0" encoding="utf-8"?>
 <Module>
-  <Name value="One Skip — To Rule Them All" />
+  <Name value="One Skip" />
   <Id value="OneSkip" />
-  <Version value="v1.0.0" />
-  <ModuleCategory value="Singleplayer" />
+  <Version value="v1.1.0" />
   <DependedModules>
     <DependedModule Id="Native" />
     <DependedModule Id="Bannerlord.Harmony" />
-    <DependedModule Id="Bannerlord.MBOptionScreen" />
-    …
   </DependedModules>
   <SubModules>
     <SubModule>
-      <DLLName value="WPS_SkipIntro.dll" />
-      <SubModuleClassType value="WPS.SkipIntro.SubModule" />
-    </SubModule>
-    <SubModule>
-      <DLLName value="UsefulSkips.dll" />
-      <SubModuleClassType value="UsefulSkips.UsefulSkipsSubModule" />
+      <DLLName value="OneSkip.dll" />
+      <SubModuleClassType value="OneSkip.SubModule" />
     </SubModule>
   </SubModules>
 </Module>`;

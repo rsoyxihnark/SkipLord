@@ -1,11 +1,11 @@
 import { i as __toESM } from "../_runtime.mjs";
 import { n as require_react } from "../_libs/@radix-ui/react-compose-refs+[...].mjs";
 import { v as require_jsx_runtime } from "../_libs/@tanstack/react-router+[...].mjs";
-import { a as Check, i as Copy, n as Minus, o as ArrowDown, r as Download } from "../_libs/lucide-react.mjs";
+import { a as Check, i as Copy, n as Minus, o as ArrowUpRight, r as Download, s as ArrowDown } from "../_libs/lucide-react.mjs";
 import { n as clsx, t as cva } from "../_libs/class-variance-authority+clsx.mjs";
 import { t as Slot } from "../_libs/radix-ui__react-slot.mjs";
 import { t as twMerge } from "../_libs/tailwind-merge.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-DBmc0_M8.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-DRXvoKZ5.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function cn(...inputs) {
@@ -113,169 +113,93 @@ function Sigil({ className = "size-10" }) {
 		]
 	});
 }
+var GITHUB = {
+	owner: "rsoyxihnark",
+	repo: "SkipLord",
+	url: "https://github.com/rsoyxihnark/SkipLord",
+	releases: "https://github.com/rsoyxihnark/SkipLord/releases"
+};
 var MODULE = {
 	id: "OneSkip",
-	name: "One Skip — To Rule Them All",
+	name: "One Skip",
 	short: "One Skip",
-	version: "v1.0.0",
+	version: "v1.1.0",
 	game: "Mount & Blade II: Bannerlord",
-	zip: "/downloads/OneSkip-v1.0.0.zip",
-	zipName: "OneSkip-v1.0.0.zip",
-	zipBytes: 15259,
-	sha256: "344f2d81873b10c09e7ae504c76171f1f091978c36ce9fc08e3b4bfbd331b158"
+	zip: "/downloads/OneSkip-v1.1.0.zip",
+	zipName: "OneSkip-v1.1.0.zip",
+	zipBytes: 4325,
+	sha256: "dc52428891aba8fe8cb1e648527ab11f61b25e2642fc76d48410a044d6885d85",
+	githubAsset: "https://github.com/rsoyxihnark/SkipLord/releases/download/v1.1.0/OneSkip-v1.1.0.zip",
+	githubRelease: "https://github.com/rsoyxihnark/SkipLord/releases/tag/v1.1.0"
 };
+var RELEASES = [{
+	tag: "v1.1.0",
+	title: "One Skip v1.1.0",
+	date: "15 Sep 2026",
+	latest: true,
+	zip: "/downloads/OneSkip-v1.1.0.zip",
+	zipName: "OneSkip-v1.1.0.zip",
+	github: "https://github.com/rsoyxihnark/SkipLord/releases/tag/v1.1.0",
+	githubAsset: "https://github.com/rsoyxihnark/SkipLord/releases/download/v1.1.0/OneSkip-v1.1.0.zip",
+	notes: "Own assembly. Splash and campaign cinematic only. No MCM. v1.0.0 never loaded if you did not already have MCM — that pack is dead.",
+	bytes: 4325,
+	sha256: "dc52428891aba8fe8cb1e648527ab11f61b25e2642fc76d48410a044d6885d85"
+}];
 var FILES = [
 	{
 		path: "SubModule.xml",
-		bytes: 2263,
-		role: "Module manifest — loads both assemblies"
+		bytes: 1230,
+		role: "Module manifest"
 	},
 	{
 		path: "README.txt",
-		bytes: 3702,
-		role: "Install, credits, why two DLLs"
+		bytes: 814,
+		role: "Install"
 	},
 	{
-		path: "bin/Win64_Shipping_Client/WPS_SkipIntro.dll",
-		bytes: 5120,
-		role: "1.4.8 splash skip"
-	},
-	{
-		path: "bin/Win64_Shipping_Client/UsefulSkips.dll",
-		bytes: 12288,
-		role: "Intro, character creation, tutorial"
-	},
-	{
-		path: "bin/Win64_Shipping_Client/UsefulSkips.pdb",
-		bytes: 38400,
-		role: "Symbols for crash reports"
+		path: "bin/Win64_Shipping_Client/OneSkip.dll",
+		bytes: 6656,
+		role: "Splash + campaign cinematic"
 	}
 ];
-var FEATURES = [
-	{
-		id: "splash",
-		title: "Startup splash",
-		blurb: "Marks the intro video as already played before the first screen is set. You land on the menu.",
-		defaultOn: true,
-		source: "WPS Skip Intro",
-		via: "Harmony prefix on SetInitialModuleScreenAsRootScreen"
-	},
-	{
-		id: "campaign",
-		title: "Campaign cinematic",
-		blurb: "When a new sandbox or story campaign pushes the intro video, the playback state is finished immediately.",
-		defaultOn: true,
-		source: "Useful Skips",
-		via: "Harmony on GameStateManager.CleanAndPushState"
-	},
-	{
-		id: "cc",
-		title: "Character creation",
-		blurb: "Random culture and name, matching family and kit, plus 6 attribute and 12 focus points. Off until you flip it in MCM.",
-		defaultOn: false,
-		source: "Useful Skips",
-		via: "Harmony on CharacterCreationManager.NextStage"
-	},
-	{
-		id: "tutorial",
-		title: "Story tutorial",
-		blurb: "Closes the training-field / brother prologue so a story-mode start dumps you on the map. Off by default — it also skips Gunnar’s questline.",
-		defaultOn: false,
-		source: "Useful Skips",
-		via: "Harmony on TutorialPhaseCampaignBehavior"
-	}
-];
-var SOURCES = [
-	{
-		id: "splash-videos",
-		year: "2022",
-		version: "v1.1.0",
-		name: "Skip Splash Videos",
-		author: "scorpiona / jzebedee",
-		nexus: 4201,
-		role: "lineage",
-		verdict: "Not loaded",
-		take: "Proved a Harmony reverse-patch can kill the splash without touching native video files.",
-		leave: "Patches the same startup method as WPS. Shipping both would double-hook 1.4.8."
-	},
-	{
-		id: "skip-intro",
-		year: "2022",
-		version: "v1.1",
-		name: "Skip Intro and Character Creation",
-		author: "gallickgunner",
-		nexus: 3696,
-		role: "lineage",
-		verdict: "Not loaded",
-		take: "Config-file skips and a dedicated character-creation fast path. First of the four to treat intros as code, not deleted .ivd files.",
-		leave: "Harmony transpiler on the same method WPS prefixes. Character creation is handled more completely by Useful Skips."
-	},
-	{
-		id: "useful",
-		year: "2025",
-		version: "v1.0.2",
-		name: "Useful Skips",
-		author: "OrderWOPower",
-		nexus: 4896,
-		role: "loaded",
-		verdict: "Loaded",
-		take: "Campaign intro, character creation, tutorial, and MCM toggles. Splash is set from a submodule callback, so it stacks with WPS.",
-		leave: "Nothing — this is the feature engine."
-	},
-	{
-		id: "wps",
-		year: "2026",
-		version: "v1.0.2",
-		name: "[WPS] Skip Intro",
-		author: "Wasted Potential Studios",
-		nexus: 10230,
-		role: "loaded",
-		verdict: "Loaded",
-		take: "Five-kilobyte splash skip written against Native 1.4.8. The one that belongs on a current install.",
-		leave: "Splash only — Useful Skips covers the rest."
-	}
-];
-var REQUIREMENTS = [
-	{
-		id: "Harmony",
-		note: "BUTR Harmony, enabled before this module"
-	},
-	{
-		id: "MCM",
-		note: "Mod Configuration Menu (Bannerlord.MBOptionScreen)"
-	},
-	{
-		id: "Native",
-		note: "Game module — launcher will pull Sandbox / StoryMode with it"
-	}
-];
+var FEATURES = [{
+	id: "splash",
+	title: "Startup splash",
+	blurb: "Marks the splash as already played before the first screen is set. You land on the menu.",
+	defaultOn: true
+}, {
+	id: "campaign",
+	title: "Campaign cinematic",
+	blurb: "When a new sandbox or story campaign pushes campaign_intro, playback is finished immediately.",
+	defaultOn: true
+}];
+var REQUIREMENTS = [{
+	id: "Harmony",
+	note: "Bannerlord.Harmony, enabled above this module"
+}, {
+	id: "Native",
+	note: "The game itself. Nothing else."
+}];
 var INSTALL = [
-	"Install Harmony and MCM if they are not already in your list.",
-	"Unzip OneSkip-v1.0.0.zip so Modules/OneSkip/SubModule.xml exists.",
-	"Launcher → Singleplayer → Mods. Enable Harmony, MCM, and One Skip.",
-	"Disable the original four: Skip Intro, Skip Splash Videos, Useful Skips, [WPS] Skip Intro.",
-	"Start the game. MCM → Useful Skips to skip character creation or the tutorial on a new campaign."
+	"Install Harmony if it is not already in your list.",
+	"Delete any old OneSkip folder first, then unzip so Modules/OneSkip/SubModule.xml exists.",
+	"Launcher → Singleplayer → Mods. Enable Harmony, then One Skip.",
+	"Turn off any other intro-skip module so they do not double-patch.",
+	"Start the game. Splash is gone. A new campaign does not play the cinematic."
 ];
 var SUBMODULE_XML = `<?xml version="1.0" encoding="utf-8"?>
 <Module>
-  <Name value="One Skip — To Rule Them All" />
+  <Name value="One Skip" />
   <Id value="OneSkip" />
-  <Version value="v1.0.0" />
-  <ModuleCategory value="Singleplayer" />
+  <Version value="v1.1.0" />
   <DependedModules>
     <DependedModule Id="Native" />
     <DependedModule Id="Bannerlord.Harmony" />
-    <DependedModule Id="Bannerlord.MBOptionScreen" />
-    …
   </DependedModules>
   <SubModules>
     <SubModule>
-      <DLLName value="WPS_SkipIntro.dll" />
-      <SubModuleClassType value="WPS.SkipIntro.SubModule" />
-    </SubModule>
-    <SubModule>
-      <DLLName value="UsefulSkips.dll" />
-      <SubModuleClassType value="UsefulSkips.UsefulSkipsSubModule" />
+      <DLLName value="OneSkip.dll" />
+      <SubModuleClassType value="OneSkip.SubModule" />
     </SubModule>
   </SubModules>
 </Module>`;
@@ -294,7 +218,7 @@ function Home() {
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Header, {}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("main", { children: [
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Hero, {}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lineage, {}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Releases, {}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Features, {}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Forge, {}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Install, {}),
@@ -321,14 +245,14 @@ function Header() {
 					className: "hidden items-center gap-6 text-sm text-muted sm:flex",
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
-							href: "#lineage",
+							href: "#releases",
 							className: "hover:text-fg",
-							children: "Lineage"
+							children: "Releases"
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
 							href: "#features",
 							className: "hover:text-fg",
-							children: "Features"
+							children: "Skips"
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
 							href: "#install",
@@ -368,15 +292,15 @@ function Hero() {
 						className: "rise font-display text-3xl leading-tight font-semibold tracking-(--tracking-display) text-balance",
 						style: { animationDelay: "80ms" },
 						children: [
-							"One skip to",
+							"Splash and the",
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("br", {}),
-							"rule them all"
+							"campaign cinematic."
 						]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "rise mt-5 max-w-xl text-base leading-(--leading-normal) text-muted",
 						style: { animationDelay: "140ms" },
-						children: "Four community skip mods, one folder. Splash, campaign cinematic, character creation, and the story tutorial — the two assemblies that still belong on a 1.4.8 install, and none of the ones that would fight them."
+						children: "One assembly. Two skips. You hit the menu, and a new campaign does not play the intro reel. Character creation and the tutorial stay. Harmony is the only extra."
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "rise mt-8 flex w-full min-w-0 flex-col gap-3 sm:flex-row sm:items-center",
@@ -388,11 +312,11 @@ function Hero() {
 							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
 								href: MODULE.zip,
 								download: MODULE.zipName,
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Download, {}), "Download the module"]
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Download, {}), "Download v1.1.0 zip"]
 							})
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
 							className: "font-mono text-xs text-subtle",
-							children: [formatBytes(MODULE.zipBytes), " · drop into Modules"]
+							children: [formatBytes(MODULE.zipBytes), " · replace the old folder"]
 						})]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(HashRow, {})
@@ -475,69 +399,92 @@ function ModuleCard() {
 		})]
 	});
 }
-function Lineage() {
+function Releases() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
-		id: "lineage",
+		id: "releases",
 		className: "scroll-mt-16 border-t border-line",
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 			className: "mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20",
 			children: [
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 					className: "font-display text-[11px] font-semibold tracking-(--tracking-kicker) text-steel uppercase",
-					children: "Four worlds"
+					children: "Releases"
 				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
-					className: "mt-3 font-display text-xl leading-snug font-semibold tracking-(--tracking-display) sm:text-2xl",
-					children: "What each mod brought — and which two still load"
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "mt-3 flex flex-wrap items-end justify-between gap-4",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						className: "font-display text-xl font-semibold tracking-(--tracking-display) sm:text-2xl",
+						children: "Use this zip. Not v1.0.0."
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+						href: GITHUB.releases,
+						target: "_blank",
+						rel: "noreferrer",
+						className: "inline-flex items-center gap-1 text-sm text-steel hover:text-fg",
+						children: ["GitHub releases", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowUpRight, { className: "size-3.5" })]
+					})]
 				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-					className: "mt-4 max-w-2xl text-sm leading-(--leading-normal) text-muted",
-					children: "Loading all four Harmony patches on the same startup method is how you crash a launcher. One Skip keeps the current splash skip and the only feature-complete campaign skip, and leaves the 2022 doubles in the lineage."
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ol", {
-					className: "mt-10 grid gap-3 md:grid-cols-2",
-					children: SOURCES.map((src) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", {
-						className: "flex flex-col rounded-[calc(var(--radius-sm)+12px)] border border-line bg-bg-elevated p-5",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "flex items-start justify-between gap-3",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-									className: "font-mono text-[11px] text-subtle",
-									children: [
-										src.year,
-										" · ",
-										src.version
-									]
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: src.role === "loaded" ? "rounded-full bg-fg px-2.5 py-0.5 text-[10px] font-medium tracking-wide text-bg uppercase" : "rounded-full border border-line px-2.5 py-0.5 text-[10px] font-medium tracking-wide text-muted uppercase",
-									children: src.verdict
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
+					className: "mt-8 space-y-3",
+					children: RELEASES.map((rel) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", {
+						className: "rounded-xl border border-line bg-bg-elevated p-5 sm:p-6",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "min-w-0",
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "flex flex-wrap items-center gap-2",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+											className: "font-display text-lg text-fg",
+											children: rel.title
+										}), rel.latest ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "rounded-full bg-fg px-2.5 py-0.5 text-[10px] font-medium tracking-wide text-bg uppercase",
+											children: "Latest"
+										}) : null]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+										className: "mt-1 font-mono text-[11px] text-subtle",
+										children: [
+											rel.tag,
+											" · ",
+											rel.date,
+											" · ",
+											formatBytes(rel.bytes)
+										]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+										className: "mt-3 max-w-2xl text-sm leading-(--leading-normal) text-muted",
+										children: rel.notes
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+										className: "mt-3 break-all font-mono text-[11px] text-subtle",
+										children: ["SHA-256 ", rel.sha256]
+									})
+								]
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex shrink-0 flex-col gap-2 sm:w-48",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+									asChild: true,
+									className: "w-full",
+									children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+										href: rel.zip,
+										download: rel.zipName,
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Download, {}), "Download zip"]
+									})
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+									asChild: true,
+									variant: "ghost",
+									className: "w-full",
+									children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+										href: rel.github,
+										target: "_blank",
+										rel: "noreferrer",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowUpRight, {}), "GitHub"]
+									})
 								})]
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-								className: "mt-3 font-display text-lg leading-snug text-fg",
-								children: src.name
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "mt-1 text-sm text-muted",
-								children: src.author
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "mt-4 text-sm leading-(--leading-normal) text-fg/90",
-								children: src.take
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "mt-3 text-sm leading-(--leading-normal) text-subtle",
-								children: src.leave
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
-								className: "mt-4 self-start text-xs text-steel hover:text-fg",
-								href: `https://www.nexusmods.com/mountandblade2bannerlord/mods/${src.nexus}`,
-								target: "_blank",
-								rel: "noreferrer",
-								children: ["Nexus #", src.nexus]
-							})
-						]
-					}, src.id))
+							})]
+						})
+					}, rel.tag))
 				})
 			]
 		})
@@ -552,44 +499,33 @@ function Features() {
 			children: [
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 					className: "font-display text-[11px] font-semibold tracking-(--tracking-kicker) text-steel uppercase",
-					children: "The one module"
+					children: "What it skips"
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
 					className: "mt-3 font-display text-xl font-semibold tracking-(--tracking-display) sm:text-2xl",
-					children: "Four skips. Two on by default."
+					children: "Two videos. That is the whole mod."
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 					className: "mt-4 max-w-2xl text-sm leading-(--leading-normal) text-muted",
-					children: "Splash and the campaign cinematic fire without asking. Character creation and the tutorial stay off until you enable them in MCM — skipping the tutorial also skips Gunnar’s questline."
+					children: "Both fire with no menu and no extra dependency. Character creation, the story tutorial, and Gunnar stay where TaleWorlds put them."
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
 					className: "mt-10 grid gap-px overflow-hidden rounded-[var(--radius-lg)] border border-line bg-line sm:grid-cols-2",
 					children: FEATURES.map((f) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", {
 						className: "bg-bg-elevated p-6",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "flex items-center justify-between gap-3",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-									className: "font-display text-lg text-fg",
-									children: f.title
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: f.defaultOn ? "font-mono text-[11px] text-ok" : "font-mono text-[11px] text-subtle",
-									children: f.defaultOn ? "on" : "mcm"
-								})]
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "mt-3 text-sm leading-(--leading-normal) text-muted",
-								children: f.blurb
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-								className: "mt-4 font-mono text-[11px] text-subtle",
-								children: [
-									f.source,
-									" · ",
-									f.via
-								]
-							})
-						]
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-center justify-between gap-3",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+								className: "font-display text-lg text-fg",
+								children: f.title
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "font-mono text-[11px] text-ok",
+								children: "on"
+							})]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "mt-3 text-sm leading-(--leading-normal) text-muted",
+							children: f.blurb
+						})]
 					}, f.id))
 				})
 			]
@@ -606,30 +542,30 @@ function Forge() {
 				children: [
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "font-display text-[11px] font-semibold tracking-(--tracking-kicker) text-steel uppercase",
-						children: "How it was forged"
+						children: "How it runs"
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
 						className: "mt-3 font-display text-xl font-semibold tracking-(--tracking-display) sm:text-2xl",
-						children: "One SubModule.xml, two assemblies"
+						children: "One DLL. One class."
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "mt-4 text-sm leading-(--leading-normal) text-muted",
-						children: "Bannerlord loads every DLL listed in a module. WPS prefixes startup and marks the splash played. Useful Skips never hooks that method — it uses a submodule callback for splash, then Harmony on campaign intro, character creation, and the tutorial. They stack. The 2022 mods both transpile the same startup method as WPS, so they stay on the bench."
+						children: "Before the first screen, the splash flag is set so the menu is next. When a campaign pushes a video whose path contains campaign_intro, playback is finished. Native files stay untouched."
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ul", {
 						className: "mt-6 space-y-3 text-sm text-muted",
 						children: [
 							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", {
 								className: "flex gap-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "mt-0.5 size-4 shrink-0 text-steel" }), "Safe on an existing save. No campaign data is rewritten."]
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "mt-0.5 size-4 shrink-0 text-steel" }), "Safe on an existing save."]
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", {
 								className: "flex gap-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "mt-0.5 size-4 shrink-0 text-steel" }), "Native video files are untouched — verifying game files will not undo the skip."]
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "mt-0.5 size-4 shrink-0 text-steel" }), "No MCM. Harmony only."]
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", {
 								className: "flex gap-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Minus, { className: "mt-0.5 size-4 shrink-0 text-subtle" }), "Do not enable the original four beside this. Harmony will patch the same methods twice."]
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Minus, { className: "mt-0.5 size-4 shrink-0 text-subtle" }), "Delete the old OneSkip folder before dropping this one in."]
 							})
 						]
 					})
@@ -654,7 +590,7 @@ function Install() {
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
 					className: "mt-3 font-display text-xl font-semibold tracking-(--tracking-display) sm:text-2xl",
-					children: "Drop one folder. Turn three mods on."
+					children: "Drop one folder. Turn two mods on."
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "mt-10 grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]",
@@ -711,15 +647,25 @@ function Credits() {
 			className: "mx-auto max-w-6xl px-4 py-12 sm:px-6",
 			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 				className: "font-display text-sm text-fg",
-				children: "Original authors keep their work. This pack is an unofficial convenience merge — not TaleWorlds, not Nexus, not the four authors. Endorse the originals if it saved you a launcher slot."
+				children: "Not affiliated with TaleWorlds. Does not rewrite saves. Delete the module folder to uninstall."
 			}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
 				className: "mt-4 font-mono text-[11px] text-subtle",
 				children: [
 					"OneSkip ",
 					MODULE.version,
-					" · ",
-					MODULE.id,
-					" · Bannerlord community module"
+					" ·",
+					" ",
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+						href: GITHUB.url,
+						className: "text-steel hover:text-fg",
+						target: "_blank",
+						rel: "noreferrer",
+						children: [
+							GITHUB.owner,
+							"/",
+							GITHUB.repo
+						]
+					})
 				]
 			})]
 		})
