@@ -22,7 +22,6 @@ cp -a "$SRC" "$STAGE/OneSkip"
 
 ZIP="$OUT_DIST/$NAME"
 rm -f "$ZIP"
-# python zip so we don't depend on the zip binary
 python3 - "$STAGE" "$ZIP" << 'PY'
 import hashlib, sys, zipfile
 from pathlib import Path
@@ -30,7 +29,11 @@ stage, dest = Path(sys.argv[1]), Path(sys.argv[2])
 with zipfile.ZipFile(dest, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
     for p in sorted(stage.rglob("*")):
         if p.is_file():
-            zf.write(p, p.relative_to(stage).as_posix())
+            info = zipfile.ZipInfo(p.relative_to(stage).as_posix())
+            info.date_time = (2026, 1, 1, 0, 0, 0)
+            info.compress_type = zipfile.ZIP_DEFLATED
+            info.external_attr = 0o644 << 16
+            zf.writestr(info, p.read_bytes())
 digest = hashlib.sha256(dest.read_bytes()).hexdigest()
 print(f"{dest.name}  {dest.stat().st_size} bytes")
 print(f"SHA256  {digest}")

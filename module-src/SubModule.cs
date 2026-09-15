@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Reflection;
 using HarmonyLib;
-using TaleWorlds.Core;
 using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TWModule = TaleWorlds.MountAndBlade.Module;
@@ -19,15 +17,54 @@ namespace OneSkip
         protected override void OnSubModuleLoad()
         {
             base.OnSubModuleLoad();
+            _harmony = new Harmony(HarmonyId);
+            PatchSplash();
+            PatchVideos();
+        }
+
+        void PatchSplash()
+        {
             try
             {
-                _harmony = new Harmony(HarmonyId);
-                _harmony.PatchAll(Assembly.GetExecutingAssembly());
+                var method = AccessTools.Method(typeof(TWModule), "SetInitialModuleScreenAsRootScreen");
+                if (method == null)
+                    throw new InvalidOperationException("SetInitialModuleScreenAsRootScreen not found");
+                var prefix = new HarmonyMethod(typeof(SplashPatch), nameof(SplashPatch.Prefix))
+                {
+                    priority = Priority.First
+                };
+                _harmony.Patch(method, prefix: prefix);
+                SplashPatch.MarkPlayed(TWModule.CurrentModule);
             }
             catch (Exception ex)
             {
-                InformationManager.DisplayMessage(
-                    new InformationMessage("One Skip failed to patch: " + ex.Message, Colors.Red));
+                Say("One Skip splash patch failed: " + ex.Message, Colors.Red);
+            }
+        }
+
+        void PatchVideos()
+        {
+            try
+            {
+                var started = AccessTools.Method(typeof(VideoPlaybackState), nameof(VideoPlaybackState.OnVideoStarted));
+                if (started != null)
+                {
+                    _harmony.Patch(
+                        started,
+                        postfix: new HarmonyMethod(typeof(VideoSkipPatch), nameof(VideoSkipPatch.OnStarted)));
+                }
+
+                var setter = AccessTools.DeclaredMethod(typeof(VideoPlaybackState), "SetStartingParameters");
+                if (setter != null)
+                {
+                    _harmony.Patch(
+                        setter,
+                        postfix: new HarmonyMethod(typeof(VideoSkipPatch), nameof(VideoSkipPatch.OnSetParams)));
+                }
+            }
+            catch (Exception ex)
+            {
+                Say("One Skip video patch failed: " + ex.Message, Colors.Red);
             }
         }
 
@@ -37,24 +74,28 @@ namespace OneSkip
             SplashPatch.MarkPlayed(TWModule.CurrentModule);
             if (_announced) return;
             _announced = true;
-            InformationManager.DisplayMessage(
-                new InformationMessage("One Skip loaded — splash and campaign cinematic", Colors.Cyan));
+            Say("One Skip loaded — splash and campaign cinematic", Colors.Cyan);
         }
 
         protected override void OnSubModuleUnloaded()
         {
+            try { _harmony?.UnpatchAll(HarmonyId); }
+            catch { }
+            base.OnSubModuleUnloaded();
+        }
+
+        static void Say(string text, Color color)
+        {
             try
             {
-                _harmony?.UnpatchAll(HarmonyId);
+                InformationManager.DisplayMessage(new InformationMessage(text, color));
             }
             catch
             {
             }
-            base.OnSubModuleUnloaded();
         }
     }
 
-    [HarmonyPatch(typeof(TWModule), "SetInitialModuleScreenAsRootScreen")]
     public static class SplashPatch
     {
         static readonly FieldInfo SplashPlayed = typeof(TWModule).GetField(
@@ -73,87 +114,50 @@ namespace OneSkip
         }
     }
 
-    [HarmonyPatch]
-    public static class CampaignPushPatch
+    public static class VideoSkipPatch
     {
-        static IEnumerable<MethodBase> TargetMethods()
+        static VideoPlaybackState _pending;
+
+        public static void OnSetParams(VideoPlaybackState __instance, string videoPath)
         {
-            var type = typeof(GameStateManager);
-            foreach (var name in new[] { "OnPushState", "OnCleanAndPushState", "PushState", "CleanAndPushState" })
-            {
-                foreach (var method in type.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
-                {
-                    if (method.Name != name) continue;
-                    var parameters = method.GetParameters();
-                    if (parameters.Length == 0) continue;
-                    if (typeof(GameState).IsAssignableFrom(parameters[0].ParameterType))
-                        yield return method;
-                }
-            }
+            if (!ShouldSkip(videoPath)) return;
+            _pending = __instance;
+            Mute(__instance);
         }
 
-        public static void Prefix(GameState gameState)
+        public static void OnStarted(VideoPlaybackState __instance)
         {
-            CampaignCinematic.Mute(gameState as VideoPlaybackState);
-        }
-
-        public static void Postfix(GameState gameState)
-        {
-            CampaignCinematic.Finish(gameState as VideoPlaybackState);
-        }
-    }
-
-    [HarmonyPatch(typeof(VideoPlaybackState), nameof(VideoPlaybackState.OnVideoStarted))]
-    public static class CampaignVideoStartedPatch
-    {
-        public static void Postfix(VideoPlaybackState __instance)
-        {
-            CampaignCinematic.Finish(__instance);
-        }
-    }
-
-    static class CampaignCinematic
-    {
-        static readonly HashSet<VideoPlaybackState> InFlight = new HashSet<VideoPlaybackState>();
-
-        static readonly MethodInfo AudioSetter = typeof(VideoPlaybackState)
-            .GetProperty("AudioPath", BindingFlags.Instance | BindingFlags.Public)
-            ?.GetSetMethod(true);
-
-        public static bool IsCampaignIntro(VideoPlaybackState video)
-        {
-            if (video == null) return false;
-            var path = video.VideoPath;
-            return !string.IsNullOrEmpty(path)
-                && path.IndexOf("campaign_intro", StringComparison.OrdinalIgnoreCase) >= 0;
-        }
-
-        public static void Mute(VideoPlaybackState video)
-        {
-            if (!IsCampaignIntro(video) || AudioSetter == null) return;
+            if (__instance == null) return;
+            if (__instance != _pending && !ShouldSkip(__instance.VideoPath)) return;
+            Mute(__instance);
             try
             {
-                AudioSetter.Invoke(video, new object[] { null });
+                __instance.OnVideoFinished();
             }
             catch
             {
             }
+            if (_pending == __instance) _pending = null;
         }
 
-        public static void Finish(VideoPlaybackState video)
+        static bool ShouldSkip(string path)
         {
-            if (!IsCampaignIntro(video)) return;
-            if (!InFlight.Add(video)) return;
+            if (string.IsNullOrEmpty(path)) return false;
+            return path.IndexOf("TWLogo", StringComparison.OrdinalIgnoreCase) >= 0
+                || path.IndexOf("campaign_intro", StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        static void Mute(VideoPlaybackState video)
+        {
             try
             {
-                video.OnVideoFinished();
+                var setter = typeof(VideoPlaybackState)
+                    .GetProperty("AudioPath", BindingFlags.Instance | BindingFlags.Public)
+                    ?.GetSetMethod(true);
+                setter?.Invoke(video, new object[] { null });
             }
             catch
             {
-            }
-            finally
-            {
-                InFlight.Remove(video);
             }
         }
     }

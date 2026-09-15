@@ -107,7 +107,7 @@ function Hero() {
           >
             One folder. One DLL named OneSkip.dll. You hit the menu, and a new
             campaign does not play the intro reel. Character creation and the
-            tutorial stay. Harmony is the only extra.
+            tutorial stay. Harmony must be enabled above this module.
           </p>
           <div
             className="rise mt-8 flex w-full min-w-0 flex-col gap-3 sm:flex-row sm:items-center"
@@ -116,7 +116,7 @@ function Hero() {
             <Button asChild size="lg" className="w-full sm:w-auto">
               <a href={MODULE.zip} download={MODULE.zipName}>
                 <Download />
-                Download v1.2.0 zip
+                Download v1.3.0 zip
               </a>
             </Button>
             <p className="font-mono text-xs text-subtle">
@@ -209,7 +209,7 @@ function Releases() {
         </p>
         <div className="mt-3 flex flex-wrap items-end justify-between gap-4">
           <h2 className="font-display text-xl font-semibold tracking-(--tracking-display) sm:text-2xl">
-            v1.2.0 is the one to install.
+            v1.3.0 is the one to install.
           </h2>
           <a
             href={GITHUB.releases}

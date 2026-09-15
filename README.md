@@ -6,22 +6,20 @@ Folder: `OneSkip`. Assembly: `OneSkip.dll`. No other names.
 
 ## Download
 
-**Latest:** [OneSkip-v1.2.0.zip](https://github.com/rsoyxihnark/SkipLord/releases/latest)
+**Latest:** [OneSkip-v1.3.0.zip](https://github.com/rsoyxihnark/SkipLord/releases/latest)
 
-Delete any old `Modules/OneSkip` folder first. Unzip so `Modules/OneSkip/SubModule.xml` exists. Enable Harmony, then One Skip.
+Delete any old `Modules/OneSkip` folder first. Unzip so `Modules/OneSkip/SubModule.xml` exists. Enable **Harmony above One Skip**.
 
 When it works, the game log shows: `One Skip loaded — splash and campaign cinematic`.
-
-Older zips are withdrawn. Do not keep them.
 
 ## What it does
 
 | | |
 | --- | --- |
-| Startup splash | Menu is next |
+| Startup splash | `TWLogo_and_Partners` does not play |
 | Campaign cinematic | New sandbox / story games skip `campaign_intro` |
 
-Does not skip character creation or the story tutorial. No extra menus.
+Does not skip character creation or the story tutorial.
 
 ## Build
 
