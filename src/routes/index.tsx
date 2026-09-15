@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   ArrowDown,
+  ArrowUpRight,
   Check,
   Copy,
   Download,
@@ -12,8 +13,10 @@ import { Sigil } from "@/components/sigil";
 import {
   FEATURES,
   FILES,
+  GITHUB,
   INSTALL,
   MODULE,
+  RELEASES,
   REQUIREMENTS,
   SOURCES,
   SUBMODULE_XML,
@@ -37,6 +40,7 @@ function Home() {
       <Header />
       <main>
         <Hero />
+        <Releases />
         <Lineage />
         <Features />
         <Forge />
@@ -58,6 +62,9 @@ function Header() {
           </span>
         </a>
         <nav className="hidden items-center gap-6 text-sm text-muted sm:flex">
+          <a href="#releases" className="hover:text-fg">
+            Releases
+          </a>
           <a href="#lineage" className="hover:text-fg">
             Lineage
           </a>
@@ -114,11 +121,11 @@ function Hero() {
             <Button asChild size="lg" className="w-full sm:w-auto">
               <a href={MODULE.zip} download={MODULE.zipName}>
                 <Download />
-                Download the module
+                Download v1.0.0 zip
               </a>
             </Button>
             <p className="font-mono text-xs text-subtle">
-              {formatBytes(MODULE.zipBytes)} · drop into Modules
+              {formatBytes(MODULE.zipBytes)} · GitHub release
             </p>
           </div>
           <HashRow />
@@ -195,6 +202,76 @@ function ModuleCard() {
         ))}
       </ul>
     </aside>
+  );
+}
+
+function Releases() {
+  return (
+    <section id="releases" className="scroll-mt-16 border-t border-line">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+        <p className="font-display text-[11px] font-semibold tracking-(--tracking-kicker) text-steel uppercase">
+          Releases
+        </p>
+        <div className="mt-3 flex flex-wrap items-end justify-between gap-4">
+          <h2 className="font-display text-xl font-semibold tracking-(--tracking-display) sm:text-2xl">
+            Built zip, tagged and attached
+          </h2>
+          <a
+            href={GITHUB.releases}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1 text-sm text-steel hover:text-fg"
+          >
+            All GitHub releases
+            <ArrowUpRight className="size-3.5" />
+          </a>
+        </div>
+        <ul className="mt-8 space-y-3">
+          {RELEASES.map((rel) => (
+            <li
+              key={rel.tag}
+              className="rounded-xl border border-line bg-bg-elevated p-5 sm:p-6"
+            >
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h3 className="font-display text-lg text-fg">{rel.title}</h3>
+                    {rel.latest ? (
+                      <span className="rounded-full bg-fg px-2.5 py-0.5 text-[10px] font-medium tracking-wide text-bg uppercase">
+                        Latest
+                      </span>
+                    ) : null}
+                  </div>
+                  <p className="mt-1 font-mono text-[11px] text-subtle">
+                    {rel.tag} · {rel.date} · {formatBytes(rel.bytes)}
+                  </p>
+                  <p className="mt-3 max-w-2xl text-sm leading-(--leading-normal) text-muted">
+                    {rel.notes}
+                  </p>
+                  <p className="mt-3 break-all font-mono text-[11px] text-subtle">
+                    SHA-256 {rel.sha256}
+                  </p>
+                </div>
+                <div className="flex shrink-0 flex-col gap-2 sm:w-48">
+                  <Button asChild className="w-full">
+                    <a href={rel.zip} download={rel.zipName}>
+                      <Download />
+                      Download zip
+                    </a>
+                  </Button>
+                  <Button asChild variant="ghost" className="w-full">
+                    <a href={rel.github} target="_blank" rel="noreferrer">
+                      <ArrowUpRight />
+                      GitHub
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
   );
 }
 
@@ -406,8 +483,10 @@ function Credits() {
           authors. Endorse the originals if it saved you a launcher slot.
         </p>
         <p className="mt-4 font-mono text-[11px] text-subtle">
-          OneSkip {MODULE.version} · {MODULE.id} · Bannerlord community
-          module
+          OneSkip {MODULE.version} · {MODULE.id} ·{" "}
+          <a href={GITHUB.url} className="text-steel hover:text-fg" target="_blank" rel="noreferrer">
+            {GITHUB.owner}/{GITHUB.repo}
+          </a>
         </p>
       </div>
     </footer>

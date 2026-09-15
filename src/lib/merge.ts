@@ -1,3 +1,10 @@
+export const GITHUB = {
+  owner: "rsoyxihnark",
+  repo: "SkipLord",
+  url: "https://github.com/rsoyxihnark/SkipLord",
+  releases: "https://github.com/rsoyxihnark/SkipLord/releases",
+} as const;
+
 export const MODULE = {
   id: "OneSkip",
   name: "One Skip — To Rule Them All",
@@ -8,7 +15,28 @@ export const MODULE = {
   zipName: "OneSkip-v1.0.0.zip",
   zipBytes: 15259,
   sha256: "344f2d81873b10c09e7ae504c76171f1f091978c36ce9fc08e3b4bfbd331b158",
+  githubAsset:
+    "https://github.com/rsoyxihnark/SkipLord/releases/download/v1.0.0/OneSkip-v1.0.0.zip",
+  githubRelease: "https://github.com/rsoyxihnark/SkipLord/releases/tag/v1.0.0",
 } as const;
+
+export const RELEASES = [
+  {
+    tag: "v1.0.0",
+    title: "One Skip v1.0.0",
+    date: "15 Sep 2026",
+    latest: true,
+    zip: "/downloads/OneSkip-v1.0.0.zip",
+    zipName: "OneSkip-v1.0.0.zip",
+    github: "https://github.com/rsoyxihnark/SkipLord/releases/tag/v1.0.0",
+    githubAsset:
+      "https://github.com/rsoyxihnark/SkipLord/releases/download/v1.0.0/OneSkip-v1.0.0.zip",
+    notes:
+      "First cut. WPS splash skip plus Useful Skips (campaign intro, character creation, tutorial) in one Bannerlord module.",
+    bytes: 15259,
+    sha256: "344f2d81873b10c09e7ae504c76171f1f091978c36ce9fc08e3b4bfbd331b158",
+  },
+] as const;
 
 export const FILES = [
   { path: "SubModule.xml", bytes: 2263, role: "Module manifest — loads both assemblies" },
