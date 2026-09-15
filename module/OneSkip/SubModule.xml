@@ -3,7 +3,7 @@
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/SubModule.xsd">
   <Name value="One Skip" />
   <Id value="OneSkip" />
-  <Version value="v1.1.0" />
+  <Version value="v1.2.0" />
   <Official value="false" />
   <DefaultModule value="false" />
   <SingleplayerModule value="true" />

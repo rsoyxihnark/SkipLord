@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: "Tag to publish (e.g. v1.0.0). Empty uses the current ref."
+        description: "Tag to publish (e.g. v1.2.0). Empty uses the current ref."
         required: false
         default: ""
 
@@ -35,5 +35,8 @@ jobs:
           body: |
             Bannerlord module. Unzip so `Modules/OneSkip/SubModule.xml` exists.
 
-            Requires Harmony. Skips splash and campaign cinematic only.
+            Files: `OneSkip.dll` only.
 
+            Requires Harmony. Skips splash and campaign cinematic. Does not skip character creation or the tutorial.
+
+            Delete any older `Modules/OneSkip` folder first.

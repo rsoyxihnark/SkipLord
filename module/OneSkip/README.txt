@@ -1,26 +1,27 @@
-One Skip  v1.1.0
-Bannerlord module for Native 1.4.8
+One Skip  v1.2.0
+Bannerlord module. Folder name: OneSkip. Assembly: OneSkip.dll.
 
-Skips two videos. Nothing else.
-
-  • Startup splash — you land on the menu
-  • Campaign cinematic — new sandbox / story games go straight in
+Skips two videos only:
+  • Startup splash — menu is next
+  • Campaign cinematic — new sandbox / story games skip campaign_intro
 
 Does not skip character creation.
 Does not skip the story tutorial.
-Does not touch saves, native video files, or campaign data.
+
+When it loads you will see this in the game log:
+  One Skip loaded — splash and campaign cinematic
+If that line never appears, Harmony is off or an old folder is still in Modules.
 
 Requires
-  Harmony (Bannerlord.Harmony), enabled above this module.
-
-Does not require MCM.
+  Bannerlord.Harmony, enabled above this module.
 
 Install
-  1. Unzip so Modules/OneSkip/SubModule.xml exists.
-  2. Launcher → Singleplayer → Mods.
-  3. Enable Harmony, then One Skip.
-  4. Turn off any other intro-skip module so they do not double-patch.
-  5. Start the game.
+  1. Delete any old Modules/OneSkip folder first.
+  2. Unzip so Modules/OneSkip/SubModule.xml exists.
+  3. Launcher → Singleplayer → Mods.
+  4. Enable Harmony, then One Skip. Nothing else from this zip.
+  5. Turn off any other intro-skip module.
+  6. Start the game.
 
 Uninstall
   Disable the module or delete Modules/OneSkip. Safe on an existing save.
