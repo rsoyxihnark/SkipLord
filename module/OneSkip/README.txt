@@ -1,5 +1,5 @@
-One Skip  v1.3.0
-Bannerlord module. Folder: OneSkip. Assembly: OneSkip.dll.
+One Skip  v1.3.1
+Bannerlord module. Zip root: Modules/OneSkip. Assembly: OneSkip.dll.
 
 Skips two videos only:
   • Startup splash (TWLogo_and_Partners)
@@ -15,9 +15,15 @@ If that line never appears, Harmony is off or an old folder is still in Modules.
 Requires
   Bannerlord.Harmony, enabled ABOVE this module in the launcher list.
 
-Install
+Vortex
+  Drop this zip on Vortex. The first folder is Modules, same as other
+  Bannerlord mods. Let Vortex install it.
+
+Manual
   1. Delete any old Modules/OneSkip folder. Do not merge over it.
-  2. Unzip so Modules/OneSkip/SubModule.xml exists.
+  2. Extract this zip into the game folder (the folder that already
+     contains Modules). You should get Modules/OneSkip/SubModule.xml.
+     Do not extract into Modules itself — that nests it twice.
   3. Launcher → Singleplayer → Mods.
   4. Enable Harmony first, then One Skip.
   5. Turn off any other intro-skip module.
@@ -27,6 +33,6 @@ Uninstall
   Disable the module or delete Modules/OneSkip. Safe on an existing save.
 
 Files
-  SubModule.xml
-  README.txt
-  bin/Win64_Shipping_Client/OneSkip.dll
+  Modules/OneSkip/SubModule.xml
+  Modules/OneSkip/README.txt
+  Modules/OneSkip/bin/Win64_Shipping_Client/OneSkip.dll

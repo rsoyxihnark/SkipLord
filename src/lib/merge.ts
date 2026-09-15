@@ -9,38 +9,38 @@ export const MODULE = {
   id: "OneSkip",
   name: "One Skip",
   short: "One Skip",
-  version: "v1.3.0",
+  version: "v1.3.1",
   game: "Mount & Blade II: Bannerlord",
-  zip: "/downloads/OneSkip-v1.3.0.zip",
-  zipName: "OneSkip-v1.3.0.zip",
-  zipBytes: 4556,
-  sha256: "ed795010da23f56d6d68669130711aa68f0632d1d9f0f56ff4f4549ff645d790",
+  zip: "/downloads/OneSkip-v1.3.1.zip",
+  zipName: "OneSkip-v1.3.1.zip",
+  zipBytes: 5208,
+  sha256: "230ec004b567e1e4f89b68f240b6cb037989087d215b9716b75dea46a8b43427",
   githubAsset:
-    "https://github.com/rsoyxihnark/SkipLord/releases/download/v1.3.0/OneSkip-v1.3.0.zip",
-  githubRelease: "https://github.com/rsoyxihnark/SkipLord/releases/tag/v1.3.0",
+    "https://github.com/rsoyxihnark/SkipLord/releases/download/v1.3.1/OneSkip-v1.3.1.zip",
+  githubRelease: "https://github.com/rsoyxihnark/SkipLord/releases/tag/v1.3.1",
 } as const;
 
 export const RELEASES = [
   {
-    tag: "v1.3.0",
-    title: "One Skip v1.3.0",
+    tag: "v1.3.1",
+    title: "One Skip v1.3.1",
     date: "15 Sep 2026",
     latest: true,
-    zip: "/downloads/OneSkip-v1.3.0.zip",
-    zipName: "OneSkip-v1.3.0.zip",
-    github: "https://github.com/rsoyxihnark/SkipLord/releases/tag/v1.3.0",
+    zip: "/downloads/OneSkip-v1.3.1.zip",
+    zipName: "OneSkip-v1.3.1.zip",
+    github: "https://github.com/rsoyxihnark/SkipLord/releases/tag/v1.3.1",
     githubAsset:
-      "https://github.com/rsoyxihnark/SkipLord/releases/download/v1.3.0/OneSkip-v1.3.0.zip",
+      "https://github.com/rsoyxihnark/SkipLord/releases/download/v1.3.1/OneSkip-v1.3.1.zip",
     notes:
-      "Splash is patched first, on its own, before anything else. If the TaleWorlds logo video still starts, it is finished immediately. Campaign cinematic is the same. Delete the old OneSkip folder first. Harmony must sit above this module.",
-    bytes: 4556,
-    sha256: "ed795010da23f56d6d68669130711aa68f0632d1d9f0f56ff4f4549ff645d790",
+      "Zip now opens at Modules/, the same layout Vortex expects from other Bannerlord mods. Drop it on Vortex, or extract into the game folder. Splash and campaign cinematic skips are unchanged.",
+    bytes: 5208,
+    sha256: "230ec004b567e1e4f89b68f240b6cb037989087d215b9716b75dea46a8b43427",
   },
 ] as const;
 
 export const FILES = [
   { path: "SubModule.xml", bytes: 1230, role: "Module manifest" },
-  { path: "README.txt", bytes: 952, role: "Install" },
+  { path: "README.txt", bytes: 1280, role: "Install" },
   { path: "bin/Win64_Shipping_Client/OneSkip.dll", bytes: 7168, role: "Splash + campaign cinematic" },
 ] as const;
 
@@ -72,9 +72,9 @@ export const REQUIREMENTS = [
 export const INSTALL = [
   "Install Harmony if it is not already in your list.",
   "Delete any old Modules/OneSkip folder. Do not merge over the previous zip.",
-  "Unzip so Modules/OneSkip/SubModule.xml exists. The only DLL is OneSkip.dll.",
-  "Launcher → Singleplayer → Mods. Enable Harmony first, then One Skip.",
-  "Turn off any other intro-skip module.",
+  "Vortex: drop the zip. The first folder is Modules, same as other Bannerlord mods.",
+  "Manual: extract into the game folder (the one that already contains Modules). Do not extract into Modules itself.",
+  "Launcher → Singleplayer → Mods. Enable Harmony first, then One Skip. Turn off any other intro-skip module.",
   "Start the game. You should see “One Skip loaded” in the log, then the menu — no TaleWorlds logo reel.",
 ] as const;
 
@@ -82,7 +82,7 @@ export const SUBMODULE_XML = `<?xml version="1.0" encoding="utf-8"?>
 <Module>
   <Name value="One Skip" />
   <Id value="OneSkip" />
-  <Version value="v1.3.0" />
+  <Version value="v1.3.1" />
   <DependedModules>
     <DependedModule Id="Native" />
     <DependedModule Id="Bannerlord.Harmony" />

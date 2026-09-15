@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: "Tag to publish (e.g. v1.3.0). Empty uses the current ref."
+        description: "Tag to publish (e.g. v1.3.1). Empty uses the current ref."
         required: false
         default: ""
 
@@ -33,7 +33,10 @@ jobs:
             dist-release/*.zip
             dist-release/*.sha256
           body: |
-            Bannerlord module. Unzip so `Modules/OneSkip/SubModule.xml` exists.
+            Bannerlord / Vortex zip. First folder is `Modules`.
+
+            Extract into the game folder (the one that already has a Modules
+            directory), or drop the zip on Vortex.
 
             Files: `OneSkip.dll` only.
 
