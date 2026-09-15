@@ -1,8 +1,8 @@
 #!/bin/sh
-# Pack module/OneSkip into a Vortex-ready zip: Modules/OneSkip/...
+# Pack module/SkipLord into a Vortex-ready zip: Modules/SkipLord/...
 set -eu
 ROOT="$(CDPATH= cd -- "$(dirname "$0")/.." && pwd)"
-SRC="$ROOT/module/OneSkip"
+SRC="$ROOT/module/SkipLord"
 OUT="$ROOT/releases"
 
 if [ ! -f "$SRC/SubModule.xml" ]; then
@@ -12,13 +12,13 @@ fi
 
 VER="$(sed -n 's/.*<Version value="\([^"]*\)".*/\1/p' "$SRC/SubModule.xml" | head -n 1)"
 [ -n "$VER" ] || VER="v1.0.0"
-NAME="OneSkip-${VER}.zip"
+NAME="SkipLord-${VER}.zip"
 
 mkdir -p "$OUT"
 STAGE="$(mktemp -d)"
 trap 'rm -rf "$STAGE"' EXIT
 mkdir -p "$STAGE/Modules"
-cp -a "$SRC" "$STAGE/Modules/OneSkip"
+cp -a "$SRC" "$STAGE/Modules/SkipLord"
 
 ZIP="$OUT/$NAME"
 rm -f "$ZIP"

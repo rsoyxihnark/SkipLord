@@ -1,18 +1,18 @@
-# One Skip
+# SkipLord
 
 Bannerlord module. Skips the startup splash and the campaign cinematic. Nothing else.
 
-Folder: `Modules/OneSkip`. Assembly: `OneSkip.dll`.
+Folder: `Modules/SkipLord`. Assembly: `SkipLord.dll`.
 
 The release zip opens at `Modules/`, which is the layout Vortex expects.
 
 ## Download
 
-**Latest:** [OneSkip-v1.3.1.zip](https://github.com/rsoyxihnark/SkipLord/releases/latest)
+**Latest:** [SkipLord-v1.4.0.zip](https://github.com/rsoyxihnark/SkipLord/releases/latest)
 
-Vortex: drop the zip. Manual: extract into the game folder (the folder that already contains `Modules`). Delete any old `Modules/OneSkip` folder first. Enable **Harmony above One Skip**.
+Vortex: drop the zip. Manual: extract into the game folder (the folder that already contains `Modules`). Delete any old `Modules/SkipLord` or `Modules/OneSkip` folder first. Enable **Harmony above SkipLord**.
 
-When it works, the game log shows: `One Skip loaded — splash and campaign cinematic`.
+When it works, the game log shows: `SkipLord loaded — splash and campaign cinematic`.
 
 ## What it does
 
@@ -27,7 +27,7 @@ Does not skip character creation or the story tutorial.
 
 ```
 module-src/          C# source
-module/OneSkip/      packaged module (SubModule.xml + OneSkip.dll)
+module/SkipLord/     packaged module (SubModule.xml + SkipLord.dll)
 scripts/build-release.sh
 releases/            Vortex zip
 ```
@@ -35,8 +35,8 @@ releases/            Vortex zip
 ## Build
 
 ```sh
-dotnet build module-src/OneSkip.csproj -c Release
-cp module-src/bin/OneSkip.dll module/OneSkip/bin/Win64_Shipping_Client/
+dotnet build module-src/SkipLord.csproj -c Release
+cp module-src/bin/SkipLord.dll module/SkipLord/bin/Win64_Shipping_Client/
 sh scripts/build-release.sh
 ```
 
