@@ -3,8 +3,7 @@
 set -eu
 ROOT="$(CDPATH= cd -- "$(dirname "$0")/.." && pwd)"
 SRC="$ROOT/module/OneSkip"
-OUT_PUBLIC="$ROOT/public/downloads"
-OUT_DIST="$ROOT/dist-release"
+OUT="$ROOT/releases"
 
 if [ ! -f "$SRC/SubModule.xml" ]; then
   echo "missing $SRC/SubModule.xml" >&2
@@ -15,13 +14,13 @@ VER="$(sed -n 's/.*<Version value="\([^"]*\)".*/\1/p' "$SRC/SubModule.xml" | hea
 [ -n "$VER" ] || VER="v1.0.0"
 NAME="OneSkip-${VER}.zip"
 
-mkdir -p "$OUT_PUBLIC" "$OUT_DIST"
+mkdir -p "$OUT"
 STAGE="$(mktemp -d)"
 trap 'rm -rf "$STAGE"' EXIT
 mkdir -p "$STAGE/Modules"
 cp -a "$SRC" "$STAGE/Modules/OneSkip"
 
-ZIP="$OUT_DIST/$NAME"
+ZIP="$OUT/$NAME"
 rm -f "$ZIP"
 python3 - "$STAGE" "$ZIP" << 'PY'
 import hashlib, sys, zipfile
@@ -59,6 +58,4 @@ with zipfile.ZipFile(dest) as zf:
 Path(str(dest) + ".sha256").write_text(f"{digest}  {dest.name}\n")
 PY
 
-cp -f "$ZIP" "$OUT_PUBLIC/$NAME"
-cp -f "$ZIP.sha256" "$OUT_PUBLIC/$NAME.sha256"
-echo "wrote $OUT_PUBLIC/$NAME"
+echo "wrote $ZIP"

@@ -2,7 +2,7 @@
 
 Bannerlord module. Skips the startup splash and the campaign cinematic. Nothing else.
 
-Folder: `Modules/OneSkip`. Assembly: `OneSkip.dll`. No other names.
+Folder: `Modules/OneSkip`. Assembly: `OneSkip.dll`.
 
 The release zip opens at `Modules/`, which is the layout Vortex expects.
 
@@ -22,6 +22,15 @@ When it works, the game log shows: `One Skip loaded — splash and campaign cine
 | Campaign cinematic | New sandbox / story games skip `campaign_intro` |
 
 Does not skip character creation or the story tutorial.
+
+## Layout
+
+```
+module-src/          C# source
+module/OneSkip/      packaged module (SubModule.xml + OneSkip.dll)
+scripts/build-release.sh
+releases/            Vortex zip
+```
 
 ## Build
 
