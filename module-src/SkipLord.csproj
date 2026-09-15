@@ -4,17 +4,17 @@
     <LangVersion>10</LangVersion>
     <Nullable>disable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
-    <AssemblyName>OneSkip</AssemblyName>
-    <RootNamespace>OneSkip</RootNamespace>
+    <AssemblyName>SkipLord</AssemblyName>
+    <RootNamespace>SkipLord</RootNamespace>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <OutputPath>bin\</OutputPath>
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
     <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
-    <Version>1.3.0</Version>
-    <AssemblyTitle>OneSkip</AssemblyTitle>
-    <Product>One Skip</Product>
+    <Version>1.4.0</Version>
+    <AssemblyTitle>SkipLord</AssemblyTitle>
+    <Product>SkipLord</Product>
     <Company>SkipLord</Company>
     <Authors>SkipLord</Authors>
   </PropertyGroup>

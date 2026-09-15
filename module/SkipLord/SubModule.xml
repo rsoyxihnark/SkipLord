@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/SubModule.xsd">
-  <Name value="One Skip" />
-  <Id value="OneSkip" />
-  <Version value="v1.3.1" />
+  <Name value="SkipLord" />
+  <Id value="SkipLord" />
+  <Version value="v1.4.0" />
   <Official value="false" />
   <DefaultModule value="false" />
   <SingleplayerModule value="true" />
@@ -20,9 +20,9 @@
   </DependedModuleMetadatas>
   <SubModules>
     <SubModule>
-      <Name value="One Skip" />
-      <DLLName value="OneSkip.dll" />
-      <SubModuleClassType value="OneSkip.SubModule" />
+      <Name value="SkipLord" />
+      <DLLName value="SkipLord.dll" />
+      <SubModuleClassType value="SkipLord.SubModule" />
       <Tags>
         <Tag key="DedicatedServerType" value="none" />
         <Tag key="IsNoRenderModeElement" value="false" />

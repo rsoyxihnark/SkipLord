@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: "Tag to publish (e.g. v1.3.1). Empty uses the current ref."
+        description: "Tag to publish (e.g. v1.4.0). Empty uses the current ref."
         required: false
         default: ""
 
@@ -20,6 +20,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Build SkipLord.dll
+        run: |
+          dotnet build module-src/SkipLord.csproj -c Release
+          mkdir -p module/SkipLord/bin/Win64_Shipping_Client
+          cp -f module-src/bin/SkipLord.dll module/SkipLord/bin/Win64_Shipping_Client/SkipLord.dll
+          rm -f module/SkipLord/bin/Win64_Shipping_Client/OneSkip.dll
+
       - name: Build module zip
         run: sh scripts/build-release.sh
 
@@ -27,7 +38,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ inputs.tag || github.ref_name }}
-          name: One Skip ${{ inputs.tag || github.ref_name }}
+          name: SkipLord ${{ inputs.tag || github.ref_name }}
           generate_release_notes: true
           files: |
             releases/*.zip
@@ -38,10 +49,10 @@ jobs:
             Extract into the game folder (the one that already has a Modules
             directory), or drop the zip on Vortex.
 
-            Files: `OneSkip.dll` only.
+            Files: `SkipLord.dll` only.
 
             Requires Harmony enabled above this module.
 
             Skips splash (TWLogo_and_Partners) and campaign cinematic. Does not skip character creation or the tutorial.
 
-            Delete any older `Modules/OneSkip` folder first.
+            Delete any older `Modules/SkipLord` or `Modules/OneSkip` folder first.

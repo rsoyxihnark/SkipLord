@@ -5,11 +5,11 @@ using TaleWorlds.Library;
 using TaleWorlds.MountAndBlade;
 using TWModule = TaleWorlds.MountAndBlade.Module;
 
-namespace OneSkip
+namespace SkipLord
 {
     public class SubModule : MBSubModuleBase
     {
-        public const string HarmonyId = "skiplord.oneskip";
+        public const string HarmonyId = "skiplord";
 
         Harmony _harmony;
         bool _announced;
@@ -38,7 +38,7 @@ namespace OneSkip
             }
             catch (Exception ex)
             {
-                Say("One Skip splash patch failed: " + ex.Message, Colors.Red);
+                Say("SkipLord splash patch failed: " + ex.Message, Colors.Red);
             }
         }
 
@@ -64,7 +64,7 @@ namespace OneSkip
             }
             catch (Exception ex)
             {
-                Say("One Skip video patch failed: " + ex.Message, Colors.Red);
+                Say("SkipLord video patch failed: " + ex.Message, Colors.Red);
             }
         }
 
@@ -74,7 +74,7 @@ namespace OneSkip
             SplashPatch.MarkPlayed(TWModule.CurrentModule);
             if (_announced) return;
             _announced = true;
-            Say("One Skip loaded — splash and campaign cinematic", Colors.Cyan);
+            Say("SkipLord loaded — splash and campaign cinematic", Colors.Cyan);
         }
 
         protected override void OnSubModuleUnloaded()
