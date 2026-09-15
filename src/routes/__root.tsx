@@ -12,7 +12,7 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "Bannerlord module. Skips the startup splash and the campaign cinematic. Harmony only.",
+          "Bannerlord module. Skips the startup splash and the campaign cinematic. OneSkip.dll only. Harmony required.",
       },
       { name: "theme-color", content: "#0c0b0a" },
     ],

@@ -15,6 +15,7 @@ import {
   FILES,
   GITHUB,
   INSTALL,
+  LEFT_ALONE,
   MODULE,
   RELEASES,
   REQUIREMENTS,
@@ -104,8 +105,8 @@ function Hero() {
             className="rise mt-5 max-w-xl text-base leading-(--leading-normal) text-muted"
             style={{ animationDelay: "140ms" }}
           >
-            One assembly. Two skips. You hit the menu, and a new campaign
-            does not play the intro reel. Character creation and the
+            One folder. One DLL named OneSkip.dll. You hit the menu, and a new
+            campaign does not play the intro reel. Character creation and the
             tutorial stay. Harmony is the only extra.
           </p>
           <div
@@ -115,11 +116,11 @@ function Hero() {
             <Button asChild size="lg" className="w-full sm:w-auto">
               <a href={MODULE.zip} download={MODULE.zipName}>
                 <Download />
-                Download v1.1.0 zip
+                Download v1.2.0 zip
               </a>
             </Button>
             <p className="font-mono text-xs text-subtle">
-              {formatBytes(MODULE.zipBytes)} · replace the old folder
+              {formatBytes(MODULE.zipBytes)} · delete the old folder first
             </p>
           </div>
           <HashRow />
@@ -208,7 +209,7 @@ function Releases() {
         </p>
         <div className="mt-3 flex flex-wrap items-end justify-between gap-4">
           <h2 className="font-display text-xl font-semibold tracking-(--tracking-display) sm:text-2xl">
-            Use this zip. Not v1.0.0.
+            v1.2.0 is the one to install.
           </h2>
           <a
             href={GITHUB.releases}
@@ -280,9 +281,9 @@ function Features() {
           Two videos. That is the whole mod.
         </h2>
         <p className="mt-4 max-w-2xl text-sm leading-(--leading-normal) text-muted">
-          Both fire with no menu and no extra dependency. Character
-          creation, the story tutorial, and Gunnar stay where TaleWorlds
-          put them.
+          Both fire with no menu and no extra dependency. If the game log does
+          not show “One Skip loaded”, Harmony is off or the old folder is still
+          sitting in Modules.
         </p>
         <ul className="mt-10 grid gap-px overflow-hidden rounded-[var(--radius-lg)] border border-line bg-line sm:grid-cols-2">
           {FEATURES.map((f) => (
@@ -290,6 +291,17 @@ function Features() {
               <div className="flex items-center justify-between gap-3">
                 <h3 className="font-display text-lg text-fg">{f.title}</h3>
                 <span className="font-mono text-[11px] text-ok">on</span>
+              </div>
+              <p className="mt-3 text-sm leading-(--leading-normal) text-muted">
+                {f.blurb}
+              </p>
+            </li>
+          ))}
+          {LEFT_ALONE.map((f) => (
+            <li key={f.id} className="bg-bg p-6">
+              <div className="flex items-center justify-between gap-3">
+                <h3 className="font-display text-lg text-fg">{f.title}</h3>
+                <span className="font-mono text-[11px] text-subtle">off</span>
               </div>
               <p className="mt-3 text-sm leading-(--leading-normal) text-muted">
                 {f.blurb}
@@ -314,10 +326,10 @@ function Forge() {
             One DLL. One class.
           </h2>
           <p className="mt-4 text-sm leading-(--leading-normal) text-muted">
-            Before the first screen, the splash flag is set so the menu
-            is next. When a campaign pushes a video whose path contains
-            campaign_intro, playback is finished. Native files stay
-            untouched.
+            Before the first screen, the splash flag is set so the menu is next.
+            When the game starts a video whose path contains campaign_intro,
+            playback is finished as soon as that state is pushed. Native files
+            stay untouched.
           </p>
           <ul className="mt-6 space-y-3 text-sm text-muted">
             <li className="flex gap-2">
@@ -326,7 +338,7 @@ function Forge() {
             </li>
             <li className="flex gap-2">
               <Check className="mt-0.5 size-4 shrink-0 text-steel" />
-              No MCM. Harmony only.
+              Harmony only. No extra menus.
             </li>
             <li className="flex gap-2">
               <Minus className="mt-0.5 size-4 shrink-0 text-subtle" />
