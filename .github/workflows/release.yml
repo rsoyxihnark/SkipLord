@@ -30,10 +30,10 @@ jobs:
           name: One Skip ${{ inputs.tag || github.ref_name }}
           generate_release_notes: true
           files: |
-            dist-release/*.zip
-            dist-release/*.sha256
+            releases/*.zip
+            releases/*.sha256
           body: |
-            Bannerlord / Vortex zip. First folder is `Modules`.
+            Vortex-ready zip. First folder is `Modules`.
 
             Extract into the game folder (the one that already has a Modules
             directory), or drop the zip on Vortex.

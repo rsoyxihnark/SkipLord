@@ -1,8 +1,20 @@
+# build
+module-src/bin/
+module-src/obj/
+dist-release/
+
+# local / sandbox
+.grok/
+.vercel/
+.tanstack/
+artifacts/
+attachments/
 node_modules/
 .project_id
 .github_repo
+.node_modules.lock
 .env
 .env.*
-dist-release/
-module-src/bin/
-module-src/obj/
+AGENTS.md
+startup.sh
+*.log
