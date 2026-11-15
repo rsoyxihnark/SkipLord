@@ -74,7 +74,7 @@ namespace SkipLord
             SplashPatch.MarkPlayed(TWModule.CurrentModule);
             if (_announced) return;
             _announced = true;
-            Say("SkipLord loaded — splash and campaign cinematic", Colors.Cyan);
+            Say("SkipLord loaded: splash and campaign cinematic", Colors.Cyan);
         }
 
         protected override void OnSubModuleUnloaded()

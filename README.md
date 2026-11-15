@@ -12,7 +12,7 @@ The release zip opens at `Modules/`, which is the layout Vortex expects.
 
 Vortex: drop the zip. Manual: extract into the game folder (the folder that already contains `Modules`). Delete any old `Modules/SkipLord` or `Modules/OneSkip` folder first. Enable **Harmony above SkipLord**.
 
-When it works, the game log shows: `SkipLord loaded — splash and campaign cinematic`.
+When it works, the game log shows: `SkipLord loaded: splash and campaign cinematic`.
 
 ## What it does
 

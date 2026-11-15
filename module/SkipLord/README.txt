@@ -1,4 +1,4 @@
-SkipLord  v1.4.0
+SkipLord
 Bannerlord module. Zip root: Modules/SkipLord. Assembly: SkipLord.dll.
 
 Skips two videos only:
@@ -9,7 +9,7 @@ Does not skip character creation.
 Does not skip the story tutorial.
 
 When it loads you will see this in the game log:
-  SkipLord loaded — splash and campaign cinematic
+  SkipLord loaded: splash and campaign cinematic
 If that line never appears, Harmony is off or an old folder is still in Modules.
 
 Requires
@@ -23,7 +23,7 @@ Manual
   1. Delete any old Modules/SkipLord or Modules/OneSkip folder. Do not merge over it.
   2. Extract this zip into the game folder (the folder that already
      contains Modules). You should get Modules/SkipLord/SubModule.xml.
-     Do not extract into Modules itself — that nests it twice.
+     Do not extract into Modules itself: that nests it twice.
   3. Launcher → Singleplayer → Mods.
   4. Enable Harmony first, then SkipLord.
   5. Turn off any other intro-skip module.
