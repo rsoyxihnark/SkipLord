@@ -73,3 +73,15 @@ jobs:
           files: |
             releases/SkipLord-v${{ matrix.version }}.zip
             releases/SkipLord-v${{ matrix.version }}.zip.sha256
+
+  notes:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Bring published release notes in line with CHANGELOG.md
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: python3 scripts/release-gate.py sync

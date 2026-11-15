@@ -64,6 +64,15 @@ def changelog_section(text, version):
     return text[headings[0].end():end]
 
 
+def changelog_sections(text):
+    headings = list(HEADING.finditer(text))
+    sections = {}
+    for index, heading in enumerate(headings):
+        end = headings[index + 1].start() if index + 1 < len(headings) else len(text)
+        sections[heading.group(1)] = bullets(text[heading.end():end])
+    return sections
+
+
 def body_of(sha):
     return git("log", "-1", "--format=%b", sha).stdout.strip()
 
@@ -184,8 +193,41 @@ def notes(sha):
     print("\n".join(f"- {entry}" for entry in entries))
 
 
+def published_body(tag):
+    result = subprocess.run(["gh", "release", "view", tag, "--json", "body", "--jq", ".body"], capture_output=True, text=True)
+    if result.returncode == 0:
+        return result.stdout.strip()
+    if "release not found" in result.stderr.lower():
+        return None
+    fail(f"gh release view {tag} failed: {result.stderr.strip()}")
+
+
+def sync():
+    with open("CHANGELOG.md", encoding="utf-8") as handle:
+        sections = changelog_sections(handle.read())
+    for version, entries in sections.items():
+        if not re.fullmatch(r"\d+\.\d+\.\d+", version):
+            continue
+        tag = f"v{version}"
+        body = published_body(tag)
+        if body is None:
+            print(f"{tag}: no published release")
+            continue
+        check_notes(entries, version)
+        expected = "\n".join(f"- {entry}" for entry in entries)
+        if body == expected:
+            print(f"{tag}: release notes match CHANGELOG.md")
+            continue
+        result = subprocess.run(["gh", "release", "edit", tag, "--notes", expected], capture_output=True, text=True)
+        if result.returncode != 0:
+            fail(f"gh release edit {tag} failed: {result.stderr.strip()}")
+        print(f"{tag}: release notes rewritten from CHANGELOG.md")
+
+
 def main(argv):
-    if len(argv) >= 2 and argv[1] == "version":
+    if len(argv) == 2 and argv[1] == "sync":
+        sync()
+    elif len(argv) >= 2 and argv[1] == "version":
         with open(MODULE_XML, encoding="utf-8") as handle:
             print(module_version(handle.read(), MODULE_XML))
     elif len(argv) == 4 and argv[1] == "plan":
@@ -195,7 +237,7 @@ def main(argv):
     elif len(argv) == 3 and argv[1] == "notes":
         notes(argv[2])
     else:
-        fail("usage: release-gate.py version | plan BEFORE HEAD | stamp ZIP | notes SHA")
+        fail("usage: release-gate.py version | plan BEFORE HEAD | stamp ZIP | notes SHA | sync")
 
 
 if __name__ == "__main__":
