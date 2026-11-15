@@ -1,5 +1,4 @@
 #!/bin/sh
-# Pack module/SkipLord into a Vortex-ready zip: Modules/SkipLord/...
 set -eu
 ROOT="$(CDPATH= cd -- "$(dirname "$0")/.." && pwd)"
 SRC="$ROOT/module/SkipLord"
@@ -11,8 +10,16 @@ if [ ! -f "$SRC/SubModule.xml" ]; then
 fi
 
 VER="$(sed -n 's/.*<Version value="\([^"]*\)".*/\1/p' "$SRC/SubModule.xml" | head -n 1)"
-[ -n "$VER" ] || VER="v1.0.0"
+if [ -z "$VER" ]; then
+  echo "missing <Version value=...> in $SRC/SubModule.xml" >&2
+  exit 1
+fi
 NAME="SkipLord-${VER}.zip"
+
+if [ ! -f "$SRC/bin/Win64_Shipping_Client/SkipLord.dll" ]; then
+  echo "missing $SRC/bin/Win64_Shipping_Client/SkipLord.dll, build module-src/SkipLord.csproj and copy it there first" >&2
+  exit 1
+fi
 
 mkdir -p "$OUT"
 STAGE="$(mktemp -d)"

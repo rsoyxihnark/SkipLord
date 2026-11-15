@@ -1,9 +1,8 @@
-# build
 module-src/bin/
 module-src/obj/
+module/SkipLord/bin/
+releases/
 dist-release/
-
-# local / sandbox
 .grok/
 .vercel/
 .tanstack/

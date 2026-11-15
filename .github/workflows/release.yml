@@ -2,25 +2,46 @@ name: Release
 
 on:
   push:
-    tags:
-      - "v*"
+    branches:
+      - main
   workflow_dispatch:
-    inputs:
-      tag:
-        description: "Tag to publish (e.g. v1.4.0). Empty uses the current ref."
-        required: false
-        default: ""
 
 permissions:
   contents: write
 
-jobs:
-  release:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+concurrency:
+  group: release
+  cancel-in-progress: false
 
-      - uses: actions/setup-dotnet@v4
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      targets: ${{ steps.plan.outputs.targets }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Check pushed commits
+        id: plan
+        run: python3 scripts/release-gate.py plan "${{ github.event.before }}" "${{ github.sha }}" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: plan
+    name: ${{ matrix.publish && 'Publish' || 'Build' }} v${{ matrix.version }}
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+      matrix:
+        include: ${{ fromJSON(needs.plan.outputs.targets) }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ matrix.sha }}
+          fetch-depth: 0
+
+      - uses: actions/setup-dotnet@v6
         with:
           dotnet-version: "8.0.x"
 
@@ -29,30 +50,26 @@ jobs:
           dotnet build module-src/SkipLord.csproj -c Release
           mkdir -p module/SkipLord/bin/Win64_Shipping_Client
           cp -f module-src/bin/SkipLord.dll module/SkipLord/bin/Win64_Shipping_Client/SkipLord.dll
-          rm -f module/SkipLord/bin/Win64_Shipping_Client/OneSkip.dll
 
       - name: Build module zip
         run: sh scripts/build-release.sh
 
+      - name: Check version stamp
+        run: python3 scripts/release-gate.py stamp "releases/SkipLord-v${{ matrix.version }}.zip"
+
+      - name: Write release notes
+        if: matrix.publish
+        run: python3 scripts/release-gate.py notes "${{ matrix.sha }}" > "$RUNNER_TEMP/release-notes.md"
+
       - name: Publish GitHub Release
-        uses: softprops/action-gh-release@v2
+        if: matrix.publish
+        uses: softprops/action-gh-release@v3
         with:
-          tag_name: ${{ inputs.tag || github.ref_name }}
-          name: SkipLord ${{ inputs.tag || github.ref_name }}
-          generate_release_notes: true
+          tag_name: v${{ matrix.version }}
+          target_commitish: ${{ matrix.sha }}
+          name: SkipLord v${{ matrix.version }}
+          body_path: ${{ runner.temp }}/release-notes.md
+          fail_on_unmatched_files: true
           files: |
-            releases/*.zip
-            releases/*.sha256
-          body: |
-            Vortex-ready zip. First folder is `Modules`.
-
-            Extract into the game folder (the one that already has a Modules
-            directory), or drop the zip on Vortex.
-
-            Files: `SkipLord.dll` only.
-
-            Requires Harmony enabled above this module.
-
-            Skips splash (TWLogo_and_Partners) and campaign cinematic. Does not skip character creation or the tutorial.
-
-            Delete any older `Modules/SkipLord` or `Modules/OneSkip` folder first.
+            releases/SkipLord-v${{ matrix.version }}.zip
+            releases/SkipLord-v${{ matrix.version }}.zip.sha256

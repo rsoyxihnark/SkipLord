@@ -8,7 +8,7 @@ The release zip opens at `Modules/`, which is the layout Vortex expects.
 
 ## Download
 
-**Latest:** [SkipLord-v1.4.0.zip](https://github.com/rsoyxihnark/SkipLord/releases/latest)
+**Latest:** [SkipLord release zip](https://github.com/rsoyxihnark/SkipLord/releases/latest)
 
 Vortex: drop the zip. Manual: extract into the game folder (the folder that already contains `Modules`). Delete any old `Modules/SkipLord` or `Modules/OneSkip` folder first. Enable **Harmony above SkipLord**.
 
@@ -27,19 +27,24 @@ Does not skip character creation or the story tutorial.
 
 ```
 module-src/          C# source
-module/SkipLord/     packaged module (SubModule.xml + SkipLord.dll)
-scripts/build-release.sh
-releases/            Vortex zip
+module/SkipLord/     packaged module (SubModule.xml, the build adds SkipLord.dll)
+scripts/             build and release scripts
+releases/            Vortex zip, written by the build
 ```
 
 ## Build
 
 ```sh
 dotnet build module-src/SkipLord.csproj -c Release
+mkdir -p module/SkipLord/bin/Win64_Shipping_Client
 cp module-src/bin/SkipLord.dll module/SkipLord/bin/Win64_Shipping_Client/
 sh scripts/build-release.sh
 ```
 
-Pushing a `v*` tag publishes a GitHub Release with the zip.
+The version lives only in `module/SkipLord/SubModule.xml`. The build stamps it on `SkipLord.dll`.
+
+Every push to `main` builds the zip. A commit whose subject starts with a new version, such as `[1.4.1]`, publishes that version as a GitHub Release.
+
+The release notes are that commit's body, and they match the version's section in `CHANGELOG.md`.
 
 Not affiliated with TaleWorlds.
